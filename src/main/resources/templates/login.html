@@ -1,78 +1,116 @@
-
 <!DOCTYPE html>
-<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
 <head>
-    <title>Education Master Template</title>
-    <!-- META TAGS -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Education master is one of the best educational html template, it's suitable for all education websites like university,college,school,online education,tution center,distance education,computer education">
-    <meta name="keyword" content="education html template, university template, college template, school template, online education template, tution center template">
-    <!-- FAV ICON(BROWSER TAB ICON) -->
-    <link rel="shortcut icon" href="/image/fav.ico" type="image/x-icon">
-    <!-- GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CJosefin+Sans:600,700" rel="stylesheet">
-    <!-- FONTAWESOME ICONS -->
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <!-- ALL CSS FILES -->
-    <link href="/css/materialize.css" rel="stylesheet">
-    <link href="/css/bootstrap.css" rel="stylesheet" />
-    <link href="/css/style.css" rel="stylesheet" />
-    <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
-    <link href="/css/style-mob.css" rel="stylesheet" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="/js/html5shiv.js"></script>
-    <script src="/js/respond.min.js"></script>
-    <![endif]-->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <title>URSPI</title>
+    <!-- Custom CSS -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/admin/images/urspi_new.png">
+    <link href="/admin/css/style.min.css" rel="stylesheet">
+
 </head>
 
 <body>
-
-<section>
-    <div class="ad-log-main">
-        <div class="ad-log-in">
-            <div class="ad-log-in-logo">
-                <a href="/static"><img src="/image/logo.png" alt=""> </a>
-            </div>
-            <div class="ad-log-in-con">
-                <div class="log-in-pop-right">
-                    <h4>Tizimga kirish</h4>
-                    <form class="s12" th:action="@{/login}" method="post">
-                        <div>
-                            <div class="input-field s12">
-                                <input type="text" data-ng-model="name" class="validate" name="username">
-                                <label class="">Login</label>
+<div class="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(/admin/images/bggg.jpg    ) no-repeat center center;">
+        <div class="auth-box">
+            <div id="loginform">
+                <div class="logo">
+                    <img src="/admin/images/urspi_new.png" alt="" srcset="" width="128px">
+                    <h5 class="font-24 m-b-20">Tizimga kirish</h5>
+                </div>
+                <!-- Form -->
+                <div class="row">
+                    <div class="col-12">
+                        <div th:if="${param.error}">
+                            Login yoki parol noto`g`ri
+                        </div>
+                        <div th:if="${param.logout}">
+                            Tizimdan chiqildi
+                        </div>
+                        <form class="form-horizontal m-t-20" th:action="@{/login}" method="post">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
+                                </div>
+                                <input type="text" name="username" class="form-control form-control-lg" placeholder="Login" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
-                        </div>
-                        <div>
-                            <div class="input-field s12">
-                                <input type="password" class="validate" name="password">
-                                <label>Parol</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                </div>
+                                <input type="password" name="password" class="form-control form-control-lg" placeholder="Parol" aria-label="Password" aria-describedby="basic-addon1">
                             </div>
-                        </div>
-                        <div>
-                            <div class="input-field s4">
-                                <i class="waves-effect waves-light log-in-btn waves-input-wrapper" style="">
-                                    <button type="submit" class="waves-button-input">Kirish</button>
-                                </i> </div>
-                        </div>
-
-                    </form>
+                            <div class="form-group text-center">
+                                <div class="col-xs-12 p-b-20">
+                                    <button class="btn btn-block btn-lg btn-info" type="submit">Kirish</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- All Required js -->
+<!-- ============================================================== -->
+<script src="/admin/js/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="/admin/js/popper.min.js"></script>
+<script src="/admin/js/bootstrap.min.js"></script>
 
-<!--Import jQuery before materialize.js-->
-<script src="/js/main.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/materialize.min.js"></script>
-<script src="/js/custom.js"></script>
+<!-- ============================================================== -->
+<!-- This page plugin js -->
+<!-- ============================================================== -->
+<script>
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+    // ==============================================================
+    // Login and Recover Password
+    // ==============================================================
+    $('#to-recover').on("click", function() {
+        $("#loginform").slideUp();
+        $("#recoverform").fadeIn();
+    });
+</script>
 </body>
 
 </html>

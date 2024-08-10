@@ -36,6 +36,7 @@ public class User implements UserDetails{
     private String fullName;
 
     private Integer status;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
