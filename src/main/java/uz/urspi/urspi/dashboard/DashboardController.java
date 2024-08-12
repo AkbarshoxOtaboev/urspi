@@ -23,13 +23,7 @@ public class DashboardController {
     }
 
 
-    @GetMapping("/category")
-    public String getCategoryPage(Model model) {
-        User user =userService.getCurrentUser();
-        model.addAttribute("user", user);
-        model.addAttribute("title", "Category");
-        return "/admin/category";
-    }
+
 
     @GetMapping("/position")
     public String getPositionPage(Model model) {
