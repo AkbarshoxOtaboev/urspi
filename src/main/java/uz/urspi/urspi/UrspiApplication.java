@@ -27,6 +27,7 @@ public class UrspiApplication {
                 User admin = User.builder()
                         .username("admin")
                         .password(passwordEncoder.encode("admin"))
+                        .fullName("Akbar Otaboev")
                         .role(Role.ADMIN)
                         .status(1)
                         .build();

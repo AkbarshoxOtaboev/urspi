@@ -10,14 +10,4 @@ public class UserController {
     public String getLoginPage() {
         return "/login";
     }
-
-    @GetMapping("/dashboard")
-    public String getDashboardPage() {
-        return "/admin/home";
-    }
-
-    @GetMapping("/department")
-    public String getDepartmentPage() {
-        return "/admin/department";
-    }
 }
