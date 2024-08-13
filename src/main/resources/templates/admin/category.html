@@ -9,10 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>Nice admin Template - The Ultimate Multipurpose admin template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/admin/images/urspi_new.png">
+    <title th:text="${title}"></title>
     <!-- Custom CSS -->
     <link href="/admin/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/admin/css/dataTables.bootstrap4.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -103,33 +104,50 @@
                                     Kategoriya yaratish
                                 </button>
                             </div>
-
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>№</th>
-                                        <th>Nomi</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="category:${categories}">
-                                        <td th:text="${category.id}"></td>
-                                        <td th:text="${category.name}"></td>
-                                        <td th:if="${category.status == 1}">
-                                            <button disabled class="btn btn-success btn-sm" >Active</button>
-                                        </td>
-                                        <td th:unless="${category.status == 1}">
-                                            <button disabled class="btn btn-warning btn-sm">No Active</button>
-                                        </td>
-                                        <td>
-                                            <a th:href="@{/category/edit/getOne(id = ${category.id})}" class="ebtn btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            <a th:href="@{/category/delete(id = ${category.id})}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive mt-2">
+                                <div id="file_export_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <table id="file_export" class="table table-striped table-bordered display dataTable"
+                                           role="grid" aria-describedby="file_export_info">
+                                        <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="№: activate to sort column descending"
+                                                style="width: 0px;">№
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-label="Kategoriya: activate to sort column ascending"
+                                                style="width: 0px;">Kategoriya
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-label="Status: activate to sort column ascending"
+                                                style="width: 0px;">Status
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-label="Action: activate to sort column ascending"
+                                                style="width: 0px;">Action
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr role="row" class="odd" th:each="category:${categories}">
+                                            <td class="sorting_1" th:text="${category.id}"></td>
+                                            <td th:text="${category.name}"></td>
+                                            <td th:if="${category.status == 1}">
+                                                <button disabled class="btn btn-success btn-sm" >Active</button>
+                                            </td>
+                                            <td th:unless="${category.status == 1}">
+                                                <button disabled class="btn btn-warning btn-sm">No Active</button>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/category/edit/getOne(id = ${category.id})}" class="ebtn btn btn-outline-orange"><i class="fas fa-edit"></i></a>
+                                                <a th:href="@{/category/delete(id = ${category.id})}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -199,7 +217,7 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/category/edit" th:object="${category}">
+                <form method="post" action  ="/category/edit" th:object="${category}">
                     <input type="hidden" id="categoryId" th:field="${category.id}">
                     <div class="form-group">
                         <label for="edit_category_name" class="control-label">Kategoriya nomi</label>
@@ -243,6 +261,18 @@
 <script src="/admin/js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <script src="/admin/js/custom.min.js"></script>
+
+<script src="/admin/js/datatables.min.js"></script>
+<!-- start - This is for export functionality only -->
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+<script src="/admin/js/datatable-advanced.init.js"></script>
+
 <script src="/admin/js/categoryEdit.js"></script>
 </body>
 
