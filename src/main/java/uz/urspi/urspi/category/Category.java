@@ -1,5 +1,6 @@
 package uz.urspi.urspi.category;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,9 +9,11 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
+import uz.urspi.urspi.news.News;
 import uz.urspi.urspi.config.TableName;
 
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @Entity
@@ -27,6 +30,10 @@ public class Category {
     private String name;
 
     private Integer status;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
+    private List<News> news;
 
     @CreationTimestamp(source = SourceType.DB)
     private Instant createdAt;

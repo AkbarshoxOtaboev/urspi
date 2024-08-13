@@ -21,13 +21,7 @@ public class DashboardController {
         model.addAttribute("title", "Dashboard");
         return "/admin/home";
     }
-    @GetMapping("news")
-    public String getNewsPage(Model model) {
-        User user =userService.getCurrentUser();
-        model.addAttribute("user", user);
-        model.addAttribute("title", "News");
-        return "/admin/news";
-    }
+
 
     @GetMapping("/events")
     public String getEventsPage(Model model) {

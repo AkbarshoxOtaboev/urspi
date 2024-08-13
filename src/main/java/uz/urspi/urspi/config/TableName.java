@@ -5,4 +5,5 @@ public interface TableName {
     String DEPARTMENTS = "departments";
     String CATEGORIES = "categories";
     String POSITIONS = "positions";
+    String NEWS = "news";
 }
