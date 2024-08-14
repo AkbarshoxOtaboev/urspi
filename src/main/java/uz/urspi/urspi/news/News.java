@@ -48,4 +48,16 @@ public class News {
     @UpdateTimestamp(source = SourceType.DB)
     private Instant updatedAt;
 
+    @Override
+    public String toString() {
+        return "News{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", author='" + author + '\'' +
+                ", image='" + image + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

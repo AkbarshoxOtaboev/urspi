@@ -40,4 +40,15 @@ public class Department {
 
     @UpdateTimestamp(source = SourceType.DB)
     private Instant updatedAt;
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

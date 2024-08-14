@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en"  xmlns:th="https://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +12,7 @@
     <title th:text="${title}"></title>
     <!-- Custom CSS -->
     <link href="/admin/css/style.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -104,11 +104,38 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Kontent</label>
-                                    <textarea type="text" id="content" th:field="${newsDTO.content}" class="form-control" cols="20" rows="10"></textarea>
+                                    <div id="content">
+
+                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Rasm</label>
                                     <input type="file" name="image" id="image" class="form-control" accept="/image/*">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group">
+                                        <label for="department">Bo`linma</label>
+                                        <select id="department" name="department" class="form-control">
+                                            <option selected>Tanlang...</option>
+                                            <option th:each="department:${departments}"
+                                                    th:name="${department}"
+                                                    th:value="${department.id}"
+                                                    th:text="${department.name}"
+                                            ></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label for="category">Kategoriya</label>
+                                        <select name="category" id="category" class="form-control">
+                                            <option selected>Tanlang ...</option>
+                                            <option th:each="category:${categories}"
+                                                    th:name="${category}"
+                                                    th:value="${category.id}"
+                                                    th:text="${category.name}"
+                                            ></option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <button type="submit" class="btn btn-cyan">Yaratish</button>
@@ -171,6 +198,15 @@
 <script src="/admin/js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <script src="/admin/js/custom.min.js"></script>
+
+<!-- Include stylesheet -->
+
+<!-- Include the Quill library -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
+<script>
+     const  quill =  new Quill('#content', {theme:'snow'})
+</script>
 </body>
 
 </html>

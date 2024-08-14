@@ -7,6 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import uz.urspi.urspi.category.Category;
+import uz.urspi.urspi.category.CategoryService;
+import uz.urspi.urspi.department.Department;
+import uz.urspi.urspi.department.DepartmentService;
 import uz.urspi.urspi.storage.StorageService;
 import uz.urspi.urspi.user.User;
 import uz.urspi.urspi.user.UserService;
@@ -21,6 +25,8 @@ public class NewsController {
     private final NewsService newsService;
     private final UserService userService;
     private final StorageService storageService;
+    private final DepartmentService departmentService;
+    private final CategoryService categoryService;
 
     @GetMapping()
     public String getNewsPage(Model model) {
@@ -39,6 +45,10 @@ public class NewsController {
         model.addAttribute("title", "News");
         NewsDTO newsDTO = new NewsDTO();
         model.addAttribute("newsDTO", newsDTO);
+        List<Department> departments = departmentService.fetchAllDepartments();
+        model.addAttribute("departments", departments);
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
         return "/admin/news/newsCreate";
     }
 
