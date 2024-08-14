@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import uz.urspi.urspi.storage.StorageService;
 import uz.urspi.urspi.user.Role;
 import uz.urspi.urspi.user.User;
 import uz.urspi.urspi.user.UserService;
@@ -38,5 +39,12 @@ public class UrspiApplication {
         }
 
     };
+
+    @Bean
+    CommandLineRunner init(StorageService storageService){
+        return args -> {
+          storageService.init();
+        };
+    }
 
 }
