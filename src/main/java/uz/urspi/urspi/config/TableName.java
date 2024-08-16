@@ -6,4 +6,5 @@ public interface TableName {
     String CATEGORIES = "categories";
     String POSITIONS = "positions";
     String NEWS = "news";
+    String IMAGES = "images";
 }

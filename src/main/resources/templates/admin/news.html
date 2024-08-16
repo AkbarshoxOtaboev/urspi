@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en"  xmlns:th="https://www.thymeleaf.org">
+<html dir="ltr" lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -97,39 +97,108 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-end" >
+                            <div class="d-flex justify-content-end">
                                 <a href="/news/create" class="btn btn-outline-primary">Yangi yanglik qo`shish</a>
                             </div>
-                            <img th:src="@{'/news/files/' + ${news.get(0).image}}" alt="" width="100px">
+                            <div class="table-responsive mt-2">
+                                <div id="file_export_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <table id="file_export" class="table table-striped table-bordered display dataTable"
+                                           role="grid" aria-describedby="file_export_info">
+                                        <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="№: activate to sort column descending"
+                                                style="width: 0px;">№
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-label="Rasm: activate to sort column ascending"
+                                                style="width: 0px;">Rasm
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-label="Sarlavha: activate to sort column ascending"
+                                                style="width: 0px;">Sarlavha
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-label="Kontent: activate to sort column ascending"
+                                                style="width: 0px;">Kontent
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-label="Bo`linma: activate to sort column ascending"
+                                                style="width: 0px;">Bo`linma
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+
+                                                colspan="1" aria-label="Kategoriya: activate to sort column ascending"
+                                                style="width: 0px;">Kategoriya
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-label="Status: activate to sort column ascending"
+                                                style="width: 0px;">Status
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
+                                                colspan="1" aria-label="Action: activate to sort column ascending"
+                                                style="width: 0px;">Action
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr role="row" class="odd" th:each="news:${newsList}">
+                                            <td class="sorting_1" th:text="${news.id}"></td>
+                                            <td><img th:src="@{'/news/files/' + ${news.image}}" alt="News image" width="100px"></td>
+                                            <td th:text="${news.title}"></td>
+                                            <td th:text="${news.content}" style="text-overflow: ellipsis"></td>
+                                            <td th:text="${news.department.name}"></td>
+                                            <td th:text="${news.category.name}"></td>
+                                            <td th:if="${news.status == 1}">
+                                                <button type="button" disabled class="btn btn-success btn-sm">Active
+                                                </button>
+                                            </td>
+                                            <td th:unless="${news.status == 1}">
+                                                <button type="button" disabled class="btn btn-danger btn-sm">No active
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/department/edit(id=${news.id})}"
+                                                   class="ebtn btn btn-outline-orange"><i class="fas fa-edit"></i></a>
+                                                <a th:href="@{/department/delete(id = ${news.id})}"
+                                                   class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right sidebar -->
-            <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-            <!-- ============================================================== -->
-            <!-- End Right sidebar -->
-            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Container fluid  -->
+        <!-- End PAge Content -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
-        <!-- footer -->
+        <!-- Right sidebar -->
         <!-- ============================================================== -->
-        <div th:insert="~{parts/footer::footer}"></div>
+        <!-- .right-sidebar -->
         <!-- ============================================================== -->
-        <!-- End footer -->
+        <!-- End Right sidebar -->
         <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
+    <!-- End Container fluid  -->
     <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <div th:insert="~{parts/footer::footer}"></div>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
 </div>
 <!-- ============================================================== -->
 <!-- End Wrapper -->

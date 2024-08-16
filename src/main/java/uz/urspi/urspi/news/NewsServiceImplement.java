@@ -2,8 +2,10 @@ package uz.urspi.urspi.news;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import uz.urspi.urspi.image.ImageService;
 import uz.urspi.urspi.storage.StorageService;
-import java.io.IOException;
+import uz.urspi.urspi.user.UserService;
+
 import java.util.List;
 
 @Service
@@ -12,19 +14,30 @@ public class NewsServiceImplement implements NewsService {
 
     private final NewsRepository newsRepository;
     private final StorageService storageService;
+    private final ImageService imageService;
+    private final UserService  userService;
 
 
     @Override
-    public void createNews(NewsDTO newsDTO){
+    public void createNews(NewsDTO newsDTO) throws Exception {
         String fileName = storageService.store(newsDTO.getImage());
         News news = new News();
         news.setTitle(newsDTO.getTitle());
-        news.setAuthor(newsDTO.getAuthor());
+        news.setAuthor(userService.getCurrentUser().getRole().toString());
         news.setContent(newsDTO.getContent());
         news.setImage(fileName);
         news.setDepartment(newsDTO.getDepartment());
         news.setCategory(newsDTO.getCategory());
-        newsRepository.save(news);
+        News n = newsRepository.save(news);
+        if(newsDTO.getSlide1()!=null){
+            imageService.saveImage(newsDTO.getSlide1(), n);
+        }
+        if(newsDTO.getSlide2()!=null){
+            imageService.saveImage(newsDTO.getSlide2(), n);
+        }
+        if(newsDTO.getSlide3()!=null){
+            imageService.saveImage(newsDTO.getSlide3(), n);
+        }
 
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en"  xmlns:th="https://www.thymeleaf.org">
+<html dir="ltr" lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
     <title th:text="${title}"></title>
     <!-- Custom CSS -->
     <link href="/admin/css/style.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -97,27 +97,45 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="/news/create" method="post" enctype="multipart/form-data" th:object="${newsDTO}">
+                            <form action="/news/create" method="post" enctype="multipart/form-data"
+                                  th:object="${newsDTO}">
                                 <div class="form-group">
                                     <label for="title">Sarlavha</label>
-                                    <input type="text" id="title" th:field="${newsDTO.title}" class="form-control">
+                                    <input type="text" id="title" th:field="${newsDTO.title}" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image">Asosiy rasm</label>
+                                    <input type="file" name="image" id="image" class="form-control" accept="/image/*" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Kontent</label>
-                                    <div id="content">
-
-                                    </div>
-
+                                    <textarea name="content" id="content" cols="30" rows="10" th:field="${newsDTO.content}" class="form-control"></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label for="image">Rasm</label>
-                                    <input type="file" name="image" id="image" class="form-control" accept="/image/*">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="slide1">Slide 1</label>
+                                            <input type="file" name="slide1" id="slide1" class="form-control" accept="/image/*" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="slide2">Slide 2</label>
+                                            <input type="file" name="slide2" id="slide2" class="form-control" accept="/image/*" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="slide3">Slide 3</label>
+                                            <input type="file" name="slide3" id="slide3" class="form-control" accept="/image/*" required>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 form-group">
                                         <label for="department">Bo`linma</label>
-                                        <select id="department" name="department" class="form-control">
-                                            <option selected>Tanlang...</option>
+                                        <select id="department" name="department" class="form-control" required>
+                                            <option>Bo`linmalar ...</option>
                                             <option th:each="department:${departments}"
                                                     th:name="${department}"
                                                     th:value="${department.id}"
@@ -127,8 +145,8 @@
                                     </div>
                                     <div class="col-sm-6 form-group">
                                         <label for="category">Kategoriya</label>
-                                        <select name="category" id="category" class="form-control">
-                                            <option selected>Tanlang ...</option>
+                                        <select name="category" id="category" class="form-control" required>
+                                            <option>Kategoriyalar...</option>
                                             <option th:each="category:${categories}"
                                                     th:name="${category}"
                                                     th:value="${category.id}"
@@ -138,7 +156,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-cyan">Yaratish</button>
+                                    <button type="submit" onclick="setHtml()" class="btn btn-cyan">Yaratish</button>
                                 </div>
                             </form>
                         </div>
@@ -205,7 +223,12 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
 <script>
-     const  quill =  new Quill('#content', {theme:'snow'})
+    const quill = new Quill('#editor', {theme: 'snow'})
+    function setHtml(){
+        const html = quill.getSemanticHTM()
+        let content = document.getElementById('content')
+        content.value = html
+    }
 </script>
 </body>
 

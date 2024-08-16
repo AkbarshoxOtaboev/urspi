@@ -1,5 +1,6 @@
 package uz.urspi.urspi.news;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +12,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 import uz.urspi.urspi.category.Category;
 import uz.urspi.urspi.config.TableName;
 import uz.urspi.urspi.department.Department;
+import uz.urspi.urspi.image.Image;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,11 +30,14 @@ public class News {
 
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     private String author;
 
     private String image;
+
+    private Integer status;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
@@ -40,6 +46,10 @@ public class News {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "news", cascade = CascadeType.ALL)
+    private List<Image> imageList;
 
 
     @CreationTimestamp(source = SourceType.DB)

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface NewsService {
-    void createNews(NewsDTO newsDTO) throws IOException;
+    void createNews(NewsDTO newsDTO) throws Exception;
 
     void updateNews(NewsDTO newsDTO, Long newsId);
 

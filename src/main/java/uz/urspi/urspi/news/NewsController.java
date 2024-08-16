@@ -11,6 +11,8 @@ import uz.urspi.urspi.category.Category;
 import uz.urspi.urspi.category.CategoryService;
 import uz.urspi.urspi.department.Department;
 import uz.urspi.urspi.department.DepartmentService;
+import uz.urspi.urspi.image.Image;
+import uz.urspi.urspi.image.ImageService;
 import uz.urspi.urspi.storage.StorageService;
 import uz.urspi.urspi.user.User;
 import uz.urspi.urspi.user.UserService;
@@ -27,14 +29,15 @@ public class NewsController {
     private final StorageService storageService;
     private final DepartmentService departmentService;
     private final CategoryService categoryService;
+    private final ImageService imageService;
 
     @GetMapping()
     public String getNewsPage(Model model) {
         User user =userService.getCurrentUser();
         model.addAttribute("user", user);
         model.addAttribute("title", "News");
-        List<News> news = newsService.getAllNews();
-        model.addAttribute("news", news);
+        List<News> newsList = newsService.getAllNews();
+        model.addAttribute("newsList", newsList);
         return "/admin/news";
     }
 
@@ -53,7 +56,7 @@ public class NewsController {
     }
 
     @PostMapping("/create")
-    public String createNews(NewsDTO newsDTO) throws IOException {
+    public String createNews(NewsDTO newsDTO) throws Exception {
         newsService.createNews(newsDTO);
         return "redirect:/news";
     }

@@ -11,6 +11,9 @@ public class NewsDTO {
     private String content;
     private String author;
     private MultipartFile image;
+    private MultipartFile slide1;
+    private MultipartFile slide2;
+    private MultipartFile slide3;
     private Department department;
     private Category category;
 }
