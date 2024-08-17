@@ -3,27 +3,33 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    font-family: "Montserrat", sans-serif;
+}
 p{
     padding: 0;
     margin: 0;
 }
 .header_info{
     height: 50px;
-    background-color: #0D3459;
+    background-color: #0a0965;
     display: flex;
     align-items: center;
 }
 .header_info p{
     font-size: 16px;
-    color: #dbdbdb;
+    color: #ffffff;
+    font-weight: 500;
 }
 .social_links{
     display: flex;
     justify-content: end;
+    align-items: center;
 }
-.social_links a{
+.social_links .link{
     font-size: 18px;
-    color: #dbdbdb;
+    color: #ffffff;
+    font-weight: 500;
     margin-left: 10px;
     margin-right: 10px;
     transition: 0.5s;
@@ -32,11 +38,49 @@ p{
     color: #797979;
 }
 .header_menu{
-    height: 200px;
+    height: 130px;
     display: flex;
     align-items: center;
-    /*background-image: url('/front/images/oxford.jpg');*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center;*/
+    background-image: url('/front/images/fguk.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.navbar{
+    padding: 0;
+    background-color: #0a0965;
+    display: flex;
+    align-items: center;
+}
+.navbar .nav_link{
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 15px;
+    transition: 0.5s;
+}
+.navbar a:hover{
+    background-color: #FFFFFF;
+    color: #0a0965;
+}
+.dropdown-menu{
+    background-color: #0a0965;
+}
+.dropdown-menu a{
+    color: #FFFFFF;
+    font-size: 14px;
+}
 
+.dropdown-menu ul{
+    list-style: none;
+    padding: 0;
+}
+
+.dropdown-menu.show{
+    display: flex;
+}
+
+.dropdown-menu li:first-child a{
+    font-weight: bold;
+    font-size: 16px;
 }
