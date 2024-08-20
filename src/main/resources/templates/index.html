@@ -51,14 +51,11 @@
         </div>
     </div>
     <div class="py-3 header_menu">
-        <div class="container d-flex flex-wrap justify-content-center">
+        <div class="container d-flex flex-wrap justify-content-center align-items-center">
             <a href="/"
                class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
                 <img src="/front/images/logo.png" alt="" srcset="" width="400">
             </a>
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 d-flex align-items-center" role="search">
-                <input type="search" class="form-control" placeholder="Izlash..." aria-label="Search">
-            </form>
         </div>
     </div>
     <div class="navbar d-flex align-items-center">
@@ -121,8 +118,18 @@
         </button>
     </div>
     <!--end carusel-->
+<!--    search bar-->
+    <div class="search_bar">
+        <div class="container">
+            <form class="shadow-lg" role="search">
+                    <input type="text" name="search" id="search" placeholder="Izlash...">
+                    <button class="_btn"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+    </div>
+<!--    search bar end-->
     <!--    news section-->
-    <div class="_news">
+    <div class="_news"  >
         <div class="container">
             <div class="row pb-5">
                 <!--        news-->
@@ -313,6 +320,43 @@
         </div>
     </section>
 <!--    stat end-->
+<!--    Gallery start-->
+    <section class="slideshow">
+        <div class="container">
+            <div class="row pt-2">
+                <div class="col-sm-12">
+                    <span class="mt-5"  style="color: #0a0965; font-size: 28px; font-weight: bold">Foto gallereya </span>
+                </div>
+            </div>
+
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides fadee">
+                <img src="/front/images/slide1.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides fadee">
+                <img src="/front/images/slide2.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides fadee">
+                <img src="/front/images/slide3.jpg" style="width:100%">
+            </div>
+
+            <!--        &lt;!&ndash; Next and previous buttons &ndash;&gt;-->
+            <!--        <a class="prevv" onclick="plusSlides(-1)">&#10094;</a>-->
+            <!--        <a class="nextt" onclick="plusSlides(1)">&#10095;</a>-->
+        </div>
+        <br>
+        <!-- The dots/circles -->
+        <div style="text-align:center;" >
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
+    <!-- Slideshow container -->
+
+<!--    Gallery end-->
 </main>
 <footer>
 
@@ -320,5 +364,6 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/front/js/gallery.js"></script>
 </body>
 </html>
