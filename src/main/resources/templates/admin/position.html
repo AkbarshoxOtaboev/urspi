@@ -75,7 +75,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Asosiy</a>
+                                    <a href="/dashboard">Asosiy</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Lavozimlar</li>
                             </ol>
@@ -140,8 +140,8 @@
                                                 <button disabled class="btn btn-warning btn-sm">No Active</button>
                                             </td>
                                             <td>
-                                                <a th:href="@{/position/edit/getOne(id = ${positions.id})}" class="ebtn btn btn-outline-orange"><i class="fas fa-edit"></i></a>
-                                                <a th:href="@{/position/delete(id = ${positions.id})}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                                <a th:href="@{/dashboard/position/edit/getOne(id = ${positions.id})}" class="ebtn btn btn-outline-orange"><i class="fas fa-edit"></i></a>
+                                                <a th:href="@{/dashboard/position/delete(id = ${positions.id})}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -190,7 +190,7 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/position/create" th:object="${newPosition}">
+                <form method="post" action="/dashboard/position/create" th:object="${newPosition}">
                     <div class="form-group">
                         <label for="category_name" class="control-label">Lavozim nomi</label>
                         <input type="text" class="form-control" id="category_name" th:field="${newPosition.name}">
@@ -217,7 +217,7 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/position/edit" th:object="${newPosition}">
+                <form method="post" action="/dashboard/position/edit" th:object="${newPosition}">
                     <input type="hidden" id="positionId" th:field="${newPosition.id}">
                     <div class="form-group">
                         <label for="edit_position_name" class="control-label">Lavozim nomi</label>

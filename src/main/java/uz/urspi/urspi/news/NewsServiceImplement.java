@@ -1,6 +1,7 @@
 package uz.urspi.urspi.news;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import uz.urspi.urspi.image.ImageService;
 import uz.urspi.urspi.storage.StorageService;
@@ -28,6 +29,7 @@ public class NewsServiceImplement implements NewsService {
         news.setImage(fileName);
         news.setDepartment(newsDTO.getDepartment());
         news.setCategory(newsDTO.getCategory());
+        news.setStatus(1);
         News n = newsRepository.save(news);
         if(newsDTO.getSlide1()!=null){
             imageService.saveImage(newsDTO.getSlide1(), n);
@@ -38,7 +40,6 @@ public class NewsServiceImplement implements NewsService {
         if(newsDTO.getSlide3()!=null){
             imageService.saveImage(newsDTO.getSlide3(), n);
         }
-
     }
 
     @Override
@@ -53,7 +54,7 @@ public class NewsServiceImplement implements NewsService {
 
     @Override
     public List<News> getAllNews() {
-        return newsRepository.findAll();
+        return newsRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     @Override

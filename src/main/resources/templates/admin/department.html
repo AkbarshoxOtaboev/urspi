@@ -154,10 +154,10 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <a th:href="@{/department/edit/getOne(id=${department.id})}"
+                                                <a th:href="@{/dashboard/department/edit/getOne(id=${department.id})}"
                                                    class="ebtn btn btn-outline-orange"><i class="fas fa-edit"></i></a>
 
-                                                <a th:href="@{/department/delete(id = ${department.id})}"
+                                                <a th:href="@{/dashboard/department/delete(id = ${department.id})}"
                                                    class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -206,7 +206,7 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/department/save" th:object="${department}">
+                <form method="post" action="/dashboard/department/save" th:object="${department}">
                     <div class="form-group">
                         <label for="department_name" class="control-label">Bo`linma nomi</label>
                         <input type="text" class="form-control" id="department_name" th:field="${department.name}">
@@ -214,7 +214,6 @@
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Qo`shish</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -233,7 +232,7 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/department/edit" th:object="${department}">
+                <form method="post" action="/dashboard/department/edit" th:object="${department}">
                     <input type="hidden" id="departmentId" th:field="${department.id}">
                     <div class="form-group">
                         <label for="edit_department_name" class="control-label">Bo`linma nomi</label>

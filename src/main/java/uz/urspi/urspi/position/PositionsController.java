@@ -13,7 +13,7 @@ import uz.urspi.urspi.user.UserService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/position")
+@RequestMapping("/dashboard")
 @RequiredArgsConstructor
 public class PositionsController {
 
@@ -21,7 +21,7 @@ public class PositionsController {
     private final UserService userService;
 
 
-    @GetMapping("")
+    @GetMapping("/position")
     public String getPositionPage(Model model) {
         User user =userService.getCurrentUser();
         model.addAttribute("user", user);
@@ -33,31 +33,31 @@ public class PositionsController {
         return "/admin/position";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/position/create")
     public String createPosition(Positions positions){
         if(positionsService.isPositionExistsByName(positions.getName())){
-            return "redirect:/position?error_name";
+            return "redirect:/dashboard/position?error_name";
         }else {
             positionsService.createPositions(positions);
-            return "redirect:/position";
+            return "redirect:/dashboard/position";
         }
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/position/delete")
     public String deletePosition(Long id){
         positionsService.deletePositions(id);
-        return "redirect:/position";
+        return "redirect:/dashboard/position";
     }
 
-    @GetMapping("/edit/getOne")
+    @GetMapping("/position/edit/getOne")
     @ResponseBody
     public Positions getOnePosition(Long id){
         return positionsService.getPositions(id);
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/position/edit")
     public String updatePosition(Positions newPositions){
         positionsService.updatePositions(newPositions, newPositions.getId());
-        return "redirect:/position";
+        return "redirect:/dashboard/position";
     }
 }

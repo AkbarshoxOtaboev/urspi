@@ -13,7 +13,7 @@ import uz.urspi.urspi.user.UserService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/category")
+@RequestMapping("/dashboard/category")
 @RequiredArgsConstructor
 public class CategoryController {
 
@@ -38,7 +38,7 @@ public class CategoryController {
             return "redirect:/category?error_name";
         }else {
             categoryService.createCategory(category);
-            return "redirect:/category?success";
+            return "redirect:/dashboard/category?success";
         }
     }
 

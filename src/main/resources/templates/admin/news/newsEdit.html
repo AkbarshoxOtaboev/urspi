@@ -67,7 +67,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-5 align-self-center">
-                    <h4 class="page-title">Yanglik yaratish</h4>
+                    <h4 class="page-title">Yanglik o`zgartirish</h4>
                 </div>
                 <div class="col-7 align-self-center">
                     <div class="d-flex align-items-center justify-content-end">
@@ -76,7 +76,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="#">Asosiy</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Yanglik yaratish</li>
+                                <li class="breadcrumb-item active" aria-current="page">Yanglik o`zgartirish</li>
                             </ol>
                         </nav>
                     </div>
@@ -99,17 +99,19 @@
                         <div class="card-body">
                             <form action="/dashboard/news/create" method="post" enctype="multipart/form-data"
                                   th:object="${newsDTO}">
+                                <input type="hidden" th:field="${news.id}">
                                 <div class="form-group">
                                     <label for="title">Sarlavha</label>
-                                    <input type="text" id="title" th:field="${newsDTO.title}" class="form-control" required>
+                                    <input type="text" id="title" name="title" th:field="${news.title}" class="form-control" required>
                                 </div>
                                 <div class="form-group">
+                                    <img th:src="@{'/dashboard/news/files/' + ${news.image}}" alt="" srcset="" width="100px">
                                     <label for="image">Asosiy rasm</label>
                                     <input type="file" name="image" id="image" class="form-control" accept="/image/*" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Kontent</label>
-                                    <textarea name="content" id="content" cols="30" rows="10" th:field="${newsDTO.content}" class="form-control"></textarea>
+                                    <textarea name="content" id="content" cols="30" rows="10" th:field="${news.content}" class="form-control"></textarea>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4">

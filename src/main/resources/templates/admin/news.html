@@ -98,7 +98,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-end">
-                                <a href="/news/create" class="btn btn-outline-primary">Yangi yanglik qo`shish</a>
+                                <a href="/dashboard/news/create" class="btn btn-outline-primary">Yangi yanglik qo`shish</a>
                             </div>
                             <div class="table-responsive mt-2">
                                 <div id="file_export_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -145,7 +145,7 @@
                                         <tbody>
                                         <tr role="row" class="odd" th:each="news:${newsList}">
                                             <td class="sorting_1" th:text="${news.id}"></td>
-                                            <td><img th:src="@{'/news/files/' + ${news.image}}" alt="News image" width="100px"></td>
+                                            <td><img th:src="@{'/dashboard/news/files/' + ${news.image}}" alt="News image" width="100px"></td>
                                             <td th:text="${news.title}"></td>
                                             <td th:text="${news.content}" style="text-overflow: ellipsis"></td>
                                             <td th:text="${news.department.name}"></td>
@@ -159,9 +159,9 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <a th:href="@{/department/edit(id=${news.id})}"
+                                                <a th:href="@{/dashboard/news/edit(id=${news.id})}"
                                                    class="ebtn btn btn-outline-orange"><i class="fas fa-edit"></i></a>
-                                                <a th:href="@{/department/delete(id = ${news.id})}"
+                                                <a th:href="@{/dashboard/news/delete(id = ${news.id})}"
                                                    class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>

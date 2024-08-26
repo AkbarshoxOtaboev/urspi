@@ -10,14 +10,14 @@ import uz.urspi.urspi.user.UserService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/department")
+@RequestMapping("/dashboard")
 @RequiredArgsConstructor
 public class DepartmentController {
 
     private final DepartmentService departmentService;
     private final UserService userService;
 
-    @GetMapping("")
+    @GetMapping("/department")
     public String getDepartmentPage(Model model) {
         User user = userService.getCurrentUser();
         model.addAttribute("user", user);
@@ -28,33 +28,32 @@ public class DepartmentController {
         model.addAttribute("departments", departments);
         return "/admin/department";
     }
-
-    @PostMapping("/save")
+    @PostMapping("/department/save")
     public String saveDepartment(Department department) {
         if(departmentService.exists(department.getName())) {
-            return "redirect:/department?error";
+            return "redirect:/dashboard/department?error";
         }else {
             departmentService.create(department);
-            return "redirect:/department?success";
+            return "redirect:/dashboard/department?success";
         }
     }
 
-    @GetMapping("/edit/getOne")
+    @GetMapping("/department/edit/getOne")
     @ResponseBody
     public Department getOneDepartment(Long id) {
         return departmentService.fetchDepartmentById(id);
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/department/edit")
     public String editDepartment(Department department) {
         departmentService.update(department.getId(), department);
-        return "redirect:/department?success_edit";
+        return "redirect:/dashboard/department?success_edit";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/department/delete")
     public String deleteDepartment(Long id) {
         departmentService.delete(id);
-        return "redirect:/department";
+        return "redirect:/dashboard/department";
     }
 
 }

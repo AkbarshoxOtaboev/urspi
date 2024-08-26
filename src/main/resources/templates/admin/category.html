@@ -75,7 +75,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Asosiy</a>
+                                    <a href="/dashboard">Asosiy</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Kategoriyalar</li>
                             </ol>
@@ -140,8 +140,8 @@
                                                 <button disabled class="btn btn-warning btn-sm">No Active</button>
                                             </td>
                                             <td>
-                                                <a th:href="@{/category/edit/getOne(id = ${category.id})}" class="ebtn btn btn-outline-orange"><i class="fas fa-edit"></i></a>
-                                                <a th:href="@{/category/delete(id = ${category.id})}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                                <a th:href="@{/dashboard/category/edit/getOne(id = ${category.id})}" class="ebtn btn btn-outline-orange"><i class="fas fa-edit"></i></a>
+                                                <a th:href="@{/dashboard/category/delete(id = ${category.id})}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -190,7 +190,7 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/category/create" th:object="${category}">
+                <form method="post" action="/dashboard/category/create" th:object="${category}">
                     <div class="form-group">
                         <label for="category_name" class="control-label">Kategoriya nomi</label>
                         <input type="text" class="form-control" id="category_name" th:field="${category.name}">
@@ -198,7 +198,6 @@
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Qo`shish</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -217,7 +216,7 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action  ="/category/edit" th:object="${category}">
+                <form method="post" action="/dashboard/category/edit" th:object="${category}">
                     <input type="hidden" id="categoryId" th:field="${category.id}">
                     <div class="form-group">
                         <label for="edit_category_name" class="control-label">Kategoriya nomi</label>
@@ -227,7 +226,6 @@
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">O`zgartirish</button>
                     </div>
-
                 </form>
             </div>
         </div>

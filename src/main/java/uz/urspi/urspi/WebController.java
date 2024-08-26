@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class WebController {
+public class
+WebController {
 
     @GetMapping("/")
     public  String getIndex(Model model){

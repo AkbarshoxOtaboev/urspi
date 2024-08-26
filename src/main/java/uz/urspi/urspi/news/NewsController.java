@@ -11,17 +11,15 @@ import uz.urspi.urspi.category.Category;
 import uz.urspi.urspi.category.CategoryService;
 import uz.urspi.urspi.department.Department;
 import uz.urspi.urspi.department.DepartmentService;
-import uz.urspi.urspi.image.Image;
 import uz.urspi.urspi.image.ImageService;
 import uz.urspi.urspi.storage.StorageService;
 import uz.urspi.urspi.user.User;
 import uz.urspi.urspi.user.UserService;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/news")
+@RequestMapping("/dashboard")
 @RequiredArgsConstructor
 public class NewsController {
     private final NewsService newsService;
@@ -31,7 +29,7 @@ public class NewsController {
     private final CategoryService categoryService;
     private final ImageService imageService;
 
-    @GetMapping()
+    @GetMapping("/news")
     public String getNewsPage(Model model) {
         User user =userService.getCurrentUser();
         model.addAttribute("user", user);
@@ -41,7 +39,7 @@ public class NewsController {
         return "/admin/news";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/news/create")
     public String createNewsPage(Model model) {
         User user =userService.getCurrentUser();
         model.addAttribute("user", user);
@@ -55,19 +53,19 @@ public class NewsController {
         return "/admin/news/newsCreate";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/news/create")
     public String createNews(NewsDTO newsDTO) throws Exception {
         newsService.createNews(newsDTO);
-        return "redirect:/news";
+        return "redirect:/dashboard/news";
     }
 
-    @GetMapping("/all")
+    @GetMapping("/news/all")
     @ResponseBody
     public List<News> getAllNews() {
         return newsService.getAllNews();
     }
 
-    @GetMapping("/files/{filename:.+}")
+    @GetMapping("/news/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
@@ -78,5 +76,21 @@ public class NewsController {
 
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }
+
+    @GetMapping("/news/edit")
+    public String editNewsPage(Model model, Long id) {
+        User user =userService.getCurrentUser();
+        model.addAttribute("user", user);
+        model.addAttribute("title", "Yangliklni o`zgartirish");
+        List<Department> departments = departmentService.fetchAllDepartments();
+        model.addAttribute("departments", departments);
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
+        News news = newsService.getNewsById(id);
+        model.addAttribute("news", news);
+        NewsDTO newsDTO  = new NewsDTO();
+        model.addAttribute("newsDTO", newsDTO);
+        return "/admin/news/newsEdit";
     }
 }
