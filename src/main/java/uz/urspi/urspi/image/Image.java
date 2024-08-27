@@ -5,8 +5,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
+import org.hibernate.annotations.UpdateTimestamp;
 import uz.urspi.urspi.config.TableName;
 import uz.urspi.urspi.news.News;
+
+import java.time.Instant;
 
 @Entity
 @Data
@@ -25,4 +30,10 @@ public class Image {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "news_id")
     private News news;
+
+    @CreationTimestamp(source = SourceType.DB)
+    private Instant createdAt;
+
+    @UpdateTimestamp(source = SourceType.DB)
+    private Instant updatedAt;
 }

@@ -1,6 +1,7 @@
 package uz.urspi.urspi.image;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uz.urspi.urspi.news.News;
@@ -15,6 +16,7 @@ public class ImageServiceImplement implements ImageService {
 
     private final ImageRepository imageRepository;
     private final StorageService storageService;
+
     @Override
     public void saveImage(MultipartFile imageFile, News news) throws IOException {
         String imageName = storageService.store(imageFile);
@@ -28,5 +30,12 @@ public class ImageServiceImplement implements ImageService {
     @Override
     public List<Image> fetchImagesByNewsId(Long newsId) {
         return imageRepository.findAllByNewsId(newsId);
+    }
+
+    @Override
+    public void updateImage(Image image, MultipartFile imageFile) throws Exception {
+        String imageName = storageService.store(imageFile);
+        image.setPath(imageName);
+        imageRepository.save(image);
     }
 }

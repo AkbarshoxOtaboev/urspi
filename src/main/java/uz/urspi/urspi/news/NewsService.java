@@ -1,12 +1,11 @@
 package uz.urspi.urspi.news;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface NewsService {
     void createNews(NewsDTO newsDTO) throws Exception;
 
-    void updateNews(NewsDTO newsDTO, Long newsId);
+    void updateNews(NewsDTO newsDTO, Long id) throws Exception;
 
     void deleteNews(Long newsId);
 

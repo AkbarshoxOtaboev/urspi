@@ -1,11 +1,16 @@
 spring:
+  application:
+    name: urspi-site
   datasource:
     url: jdbc:postgresql://localhost:5432/urspi_db
     username: postgres
     password: postgres
-  driver-class-name: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
 
-
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
   jpa:
     hibernate:
       ddl-auto: update
@@ -15,6 +20,7 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
 
   mvc:
     format:

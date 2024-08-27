@@ -2,6 +2,7 @@ package uz.urspi.urspi.news;
 
 import org.springframework.core.io.Resource;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import uz.urspi.urspi.category.Category;
 import uz.urspi.urspi.category.CategoryService;
 import uz.urspi.urspi.department.Department;
 import uz.urspi.urspi.department.DepartmentService;
+import uz.urspi.urspi.image.Image;
 import uz.urspi.urspi.image.ImageService;
 import uz.urspi.urspi.storage.StorageService;
 import uz.urspi.urspi.user.User;
@@ -91,6 +93,19 @@ public class NewsController {
         model.addAttribute("news", news);
         NewsDTO newsDTO  = new NewsDTO();
         model.addAttribute("newsDTO", newsDTO);
+        List<Image> slides = imageService.fetchImagesByNewsId(id);
+        model.addAttribute("slides", slides);
         return "/admin/news/newsEdit";
+    }
+    @PostMapping("/news/edit")
+    public String editNews(NewsDTO newsDTO, Long id) throws Exception {
+        newsService.updateNews(newsDTO, id);
+        return "redirect:/dashboard/news";
+    }
+
+    @GetMapping("/news/delete")
+    public String deleteNewsPage(Long id) {
+        newsService.deleteNews(id);
+        return "redirect:/dashboard/news";
     }
 }
