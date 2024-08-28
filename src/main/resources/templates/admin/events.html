@@ -67,16 +67,16 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-5 align-self-center">
-                    <h4 class="page-title">События</h4>
+                    <h4 class="page-title">Xodisalar</h4>
                 </div>
                 <div class="col-7 align-self-center">
                     <div class="d-flex align-items-center justify-content-end">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Дашбоард</a>
+                                    <a href="#">Asosiy</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">События</li>
+                                <li class="breadcrumb-item active" aria-current="page">Xodisalar</li>
                             </ol>
                         </nav>
                     </div>
@@ -97,7 +97,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            This is some text within a card block.
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="button"></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,6 +132,68 @@
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
 </div>
+<!--create modal-->
+<div class="modal" id="createEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+     style="display: none; padding-right: 17px;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Yangi xodisa yaratish</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/dashboard/event/create" th:object="${event}">
+                    <div class="form-group">
+
+                        <label for="event_title" class="control-label">Xodisa sarlavha</label>
+                        <input type="text" class="form-control" id="event_title" th:field="${event.title}">
+                    </div>
+                    <div class="form-group">
+                        <label for="event_description" class="control-label">Xodisa tasnif</label>
+                        <input type="text" class="form-control" id="event_description" th:field="${event.description}">
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Qo`shish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end create modal-->
+
+<!--Edit department modal-->
+<div class="modal" id="editEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+     style="display: none; padding-right: 17px;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel2">Xodisani o`zgartirish </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/dashboard/event/edit" th:object="${event}">
+                    <input type="hidden" id="categoryId" th:field="${event.id}">
+                    <div class="form-group">
+                        <label for="edit_event_title" class="control-label">Xodisa sarlavhasi</label>
+                        <input type="text" class="form-control" id="edit_event_title" th:field="${event.title}">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_event_description" class="control-label">Xodisa tasnifi</label>
+                        <input type="text" class="form-control" id="edit_event_description" th:field="${event.description}">
+                    </div>
+                    <input type="hidden"  id="status" th:field="${event.status}">
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">O`zgartirish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End edit department modal-->
 <!-- ============================================================== -->
 <!-- End Wrapper -->
 <!-- ============================================================== -->

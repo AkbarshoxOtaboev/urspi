@@ -119,10 +119,10 @@
                                                 colspan="1" aria-label="Sarlavha: activate to sort column ascending"
                                                 style="width: 0px;">Sarlavha
                                             </th>
-                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
-                                                colspan="1" aria-label="Kontent: activate to sort column ascending"
-                                                style="width: 0px;">Kontent
-                                            </th>
+<!--                                            <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"-->
+<!--                                                colspan="1" aria-label="Kontent: activate to sort column ascending"-->
+<!--                                                style="width: 0px;">Kontent-->
+<!--                                            </th>-->
                                             <th class="sorting" tabindex="0" aria-controls="file_export" rowspan="1"
                                                 colspan="1" aria-label="Bo`linma: activate to sort column ascending"
                                                 style="width: 0px;">Bo`linma
@@ -147,7 +147,7 @@
                                             <td class="sorting_1" th:text="${news.id}"></td>
                                             <td><img th:src="@{'/dashboard/news/files/' + ${news.image}}" alt="News image" width="100px"></td>
                                             <td th:text="${news.title}"></td>
-                                            <td th:text="${news.content}" style="text-overflow: ellipsis"></td>
+<!--                                            <td th:text="${news.content}" style="text-overflow: ellipsis"></td>-->
                                             <td th:text="${news.department.name}"></td>
                                             <td th:text="${news.category.name}"></td>
                                             <td th:if="${news.status == 1}">

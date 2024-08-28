@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import uz.urspi.urspi.user.User;
 import uz.urspi.urspi.user.UserService;
 
 @Controller
+@RequestMapping("/dashboard")
 @RequiredArgsConstructor
 public class DashboardController {
 
@@ -22,13 +24,7 @@ public class DashboardController {
     }
 
 
-    @GetMapping("/events")
-    public String getEventsPage(Model model) {
-        User user =userService.getCurrentUser();
-        model.addAttribute("user", user);
-        model.addAttribute("title", "Events");
-        return "/admin/events";
-    }
+
 
     @GetMapping("/employee")
     public String getEmployeePage(Model model) {
