@@ -9,7 +9,7 @@ import uz.urspi.urspi.user.User;
 import uz.urspi.urspi.user.UserService;
 
 @Controller
-@RequestMapping("/dashboard")
+@RequestMapping("")
 @RequiredArgsConstructor
 public class DashboardController {
 

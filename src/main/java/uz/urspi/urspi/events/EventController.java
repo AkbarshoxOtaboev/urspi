@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import uz.urspi.urspi.eventInfo.EventInfo;
 import uz.urspi.urspi.user.User;
 import uz.urspi.urspi.user.UserService;
 
@@ -37,7 +38,7 @@ public class EventController {
 
     @GetMapping("/event/getOne")
     @ResponseBody
-    public Event getOneEvent(@RequestParam("id") Long id) {
+    public Event getOneEvent(Long id) {
         return eventService.getEvent(id);
     }
 
@@ -51,5 +52,15 @@ public class EventController {
     public String deleteEvent(@RequestParam("id") Long id) {
         eventService.delete(id);
         return "redirect:/dashboard/events";
+    }
+
+    @GetMapping("/event/addEventInfo")
+    public String addEventInfo(Model model, @RequestParam("id") Long id) {
+        model.addAttribute("event", eventService.getEvent(id));
+        User user =userService.getCurrentUser();
+        model.addAttribute("user", user);
+        EventInfo eventInfo = new EventInfo();
+        model.addAttribute("eventInfo", eventInfo);
+        return "/admin/eventInfo";
     }
 }
