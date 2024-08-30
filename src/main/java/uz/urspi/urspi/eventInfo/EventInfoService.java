@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface EventInfoService {
 
-    void addEventInfo(EventInfo eventInfo, Event event);
+    void addEventInfo(EventInfoDTO eventInfoDTO, Event event);
 
-    List<EventInfo> getEventInfosByEventId(Long eventInfoId);
+    List<EventInfo> getEventInfosByEventId(Long eventId);
 
     void removeEventInfo(Long eventInfoId);
 
-    void updateEventInfo(EventInfo eventInfo, Long eventInfoId);
+    void updateEventInfo(EventInfoDTO eventInfoDTO, Long eventInfoId);
 
     EventInfo fetchEventById(Long eventInfoId);
 }

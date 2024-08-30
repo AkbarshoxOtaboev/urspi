@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import uz.urspi.urspi.eventInfo.EventInfo;
+import uz.urspi.urspi.eventInfo.EventInfoDTO;
 import uz.urspi.urspi.user.User;
 import uz.urspi.urspi.user.UserService;
 
@@ -59,8 +60,8 @@ public class EventController {
         model.addAttribute("event", eventService.getEvent(id));
         User user =userService.getCurrentUser();
         model.addAttribute("user", user);
-        EventInfo eventInfo = new EventInfo();
-        model.addAttribute("eventInfo", eventInfo);
+        EventInfoDTO eventInfoDTO = new EventInfoDTO();
+        model.addAttribute("eventInfo", eventInfoDTO);
         return "/admin/eventInfo";
     }
 }
