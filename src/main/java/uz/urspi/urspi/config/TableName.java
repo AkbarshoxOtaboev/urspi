@@ -9,4 +9,5 @@ public interface TableName {
     String IMAGES = "images";
     String EVENTS = "events";
     String EVENT_INFOS = "event_infos";
+    String MENUS = "menus";
 }

@@ -20,6 +20,7 @@ public class EventInfoServiceImplement implements EventInfoService {
         eventInfo.setName(eventInfoDTO.getName());
         eventInfo.setPath(filePath);
         eventInfo.setStatus(1);
+        eventInfo.setEvent(event);
         eventInfoRepository.save(eventInfo);
     }
 

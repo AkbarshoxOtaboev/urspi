@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import uz.urspi.urspi.eventInfo.EventInfo;
 import uz.urspi.urspi.eventInfo.EventInfoDTO;
+import uz.urspi.urspi.eventInfo.EventInfoService;
 import uz.urspi.urspi.user.User;
 import uz.urspi.urspi.user.UserService;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class EventController {
     private final EventService eventService;
     private final UserService userService;
+    private final EventInfoService eventInfoService;
 
     @GetMapping("/events")
     public String getEventsPage(Model model) {
@@ -61,7 +63,14 @@ public class EventController {
         User user =userService.getCurrentUser();
         model.addAttribute("user", user);
         EventInfoDTO eventInfoDTO = new EventInfoDTO();
-        model.addAttribute("eventInfo", eventInfoDTO);
+        model.addAttribute("eventInfoDTO", eventInfoDTO);
+        List<EventInfo> eventInfos = eventInfoService.getEventInfosByEventId(id);
+        model.addAttribute("eventInfos", eventInfos);
         return "/admin/eventInfo";
+    }
+    @PostMapping("/event/eventInfo/create")
+    public String createEventInfo(EventInfoDTO eventInfoDTO, Model model, Long id) {
+        eventInfoService.addEventInfo(eventInfoDTO, eventService.getEvent(id));
+        return addEventInfo(model, id);
     }
 }
