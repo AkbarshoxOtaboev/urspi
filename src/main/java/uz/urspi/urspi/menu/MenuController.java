@@ -31,14 +31,29 @@ public class MenuController {
 
     @PostMapping("/menu/create")
     public String createMenu(Model model, Menu menu) {
-        if(menuService.checkMenuName(menu.getName())) {
+        if(!menuService.checkMenuName(menu.getName())) {
             return "redirect:/dashboard/menu?error";
         }else {
             menuService.create(menu);
             return "redirect:/dashboard/menu?success";
         }
     }
+    @GetMapping("/menu/getAll")
+    public String getAllMenu(Model model) {
+        List<Menu> menus = menuService.findAll();
+        model.addAttribute("menus", menus);
+        return "redirect:/dashboard/menu";
+    }
 
+    @PostMapping("/menu/edit")
+    public String editMenu(Model model, Menu menu) {
+        menuService.edit(menu, menu.getId());
+        return "redirect:/dashboard/menu?success";
+    }
 
-
+    @GetMapping("/menu/delete")
+    public String deleteMenu(Model model, Long id) {
+        menuService.delete(id);
+        return "redirect:/dashboard/menu";
+    }
 }
