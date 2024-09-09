@@ -20,6 +20,7 @@ public class StructureController {
     private final UserService userService;
     @GetMapping("/structure")
     public String getStructurePage(Model model) {
+        model.addAttribute("title", "Tuzilma");
         User currentUser = userService.getCurrentUser();
         model.addAttribute("user", currentUser);
         List<Structure> structures = structureService.getAllStructures();
@@ -35,18 +36,17 @@ public class StructureController {
            return "redirect:/dashboard/structure?error";
         }else {
             structureService.create(structure);
-            return "redirect:/dashboard/structure?success=create";
+            return "redirect:/dashboard/structure?success";
         }
     }
 
     @PostMapping("/structure/update")
     public String updateStructure(Model model, Structure structure) {
-
-
-        return "redirect:/dashboard/structure?success=update";
+        structureService.update(structure, structure.getId());
+        return "redirect:/dashboard/structure?update";
     }
 
-    @GetMapping("/structure/getOne")
+    @GetMapping("/structure/edit/getOne")
     @ResponseBody
     public Structure getOneStructure(Long id) {
         return structureService.getStructureById(id);
@@ -55,6 +55,6 @@ public class StructureController {
     @GetMapping("/structure/delete")
     public String deleteStructure(Long id) {
         structureService.delete(id);
-        return "redirect:/dashboard/structure?success=delete";
+        return "redirect:/dashboard/structure?delete";
     }
 }

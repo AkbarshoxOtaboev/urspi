@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en"  xmlns:th="https://www.thymeleaf.org">
+<html dir="ltr" lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -13,6 +13,7 @@
     <title th:text="${title}"></title>
     <!-- Custom CSS -->
     <link href="/admin/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/admin/css/dataTables.bootstrap4.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -67,16 +68,18 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-5 align-self-center">
-                    <h4 class="page-title">Страницы</h4>
+                    <h4 class="page-title">Tuzilma</h4>
                 </div>
                 <div class="col-7 align-self-center">
                     <div class="d-flex align-items-center justify-content-end">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Дашбоард</a>
+                                    <a href="#">
+                                        Asosiy
+                                    </a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Страницы</li>
+                                <li class="breadcrumb-item active" aria-current="page">Tuzilma</li>
                             </ol>
                         </nav>
                     </div>
@@ -90,6 +93,18 @@
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">Bunday tuzilma mavjud</div>
+            </div>
+            <div th:if="${param.success}">
+                <div class="alert alert-cyan">Tuzilma qo`shildi</div>
+            </div>
+            <div th:if="${param.update}">
+                <div class="alert alert-info">Tuzilma o`zgartrildi</div>
+            </div>
+            <div th:if="${param.delete}">
+                <div class="alert alert-warning">Tuzilma o`chirildi</div>
+            </div>
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
@@ -97,7 +112,42 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            This is some text within a card block.
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-outline-cyan" data-toggle="modal"
+                                            data-target="#createStructureModal" data-whatever="@mdo"><i
+                                            class="fas fa-plus"></i> Tuzilma qo`shish
+                                    </button>
+                                </div>
+                            </div>
+                           <table class="table table-hover mt-3">
+                               <thead>
+                               <tr>
+                                   <th>#</th>
+                                   <th>Tuzilma</th>
+                                   <th>Status</th>
+                                   <th>Action</th>
+                               </tr>
+                               </thead>
+                               <tbody>
+                               <tr th:each="structure:${structures}">
+                                   <td th:text="${structure.id}"></td>
+                                   <td th:text="${structure.name}"></td>
+                                   <td th:if="${structure.status == 1}">
+                                       <button disabled class="btn btn-success btn-sm">Active</button>
+                                   </td>
+                                   <td th:unless="${structure.status==1}">
+                                       <button disabled class="btn btn-danger">No active</button>
+                                   </td>
+                                   <td>
+                                       <a th:href="@{/dashboard/structure/edit/getOne(id=${structure.id})}" class="ebtn btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                       <a th:href="@{/dashboard/structure/delete(id=${structure.id})}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                   </td>
+
+                               </tr>
+                               </tbody>
+
+                           </table>
                         </div>
                     </div>
                 </div>
@@ -138,10 +188,10 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/dashboard/category/create" th:object="${category}">
+                <form method="post" action="/dashboard/structure/create" th:object="${structure}">
                     <div class="form-group">
-                        <label for="category_name" class="control-label">Kategoriya nomi</label>
-                        <input type="text" class="form-control" id="category_name" th:field="${category.name}">
+                        <label for="category_name" class="control-label">Tuzilma nomi</label>
+                        <input type="text" class="form-control" id="category_name" th:field="${structure.name}">
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Qo`shish</button>
@@ -154,23 +204,23 @@
 <!--end create modal-->
 
 <!--Edit department modal-->
-<div class="modal" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+<div class="modal" id="editStructureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
      style="display: none; padding-right: 17px;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel2">Kategoriyani o`zgartirish </h4>
+                <h4 class="modal-title" id="exampleModalLabel2">O`zgartirish </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/dashboard/category/edit" th:object="${category}">
-                    <input type="hidden" id="categoryId" th:field="${category.id}">
+                <form method="post" action="/dashboard/structure/update" th:object="${structure}">
+                    <input type="hidden" id="structureId" th:field="${structure.id}">
                     <div class="form-group">
-                        <label for="edit_category_name" class="control-label">Kategoriya nomi</label>
-                        <input type="text" class="form-control" id="edit_category_name" th:field="${category.name}">
+                        <label for="editStructure" class="control-label">Tuzilma nomi</label>
+                        <input type="text" class="form-control" id="editStructure" th:field="${structure.name}">
                     </div>
-                    <input type="hidden"  id="status" th:field="${category.status}">
+                    <input type="hidden" id="status" th:field="${structure.status}">
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">O`zgartirish</button>
                     </div>
@@ -207,6 +257,8 @@
 <script src="/admin/js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <script src="/admin/js/custom.min.js"></script>
+<script src="/admin/js/structureEdit.js"></script>
+
 </body>
 
 </html>

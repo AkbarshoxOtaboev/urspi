@@ -1,6 +1,7 @@
 package uz.urspi.urspi.structure;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class StructureServiceImplement implements StructureService {
 
     @Override
     public List<Structure> getAllStructures() {
-        return structureRepository.findAll();
+        return structureRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @Override
