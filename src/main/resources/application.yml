@@ -2,7 +2,7 @@ spring:
   application:
     name: urspi-site
   datasource:
-    url: jdbc:postgresql://localhost:5432/urspi_db
+    url: jdbc:postgresql://localhost/urspi_db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver

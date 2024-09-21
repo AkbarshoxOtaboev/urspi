@@ -23,7 +23,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/dashboard")
 @RequiredArgsConstructor
-public class NewsController {
+public class  NewsController {
     private final NewsService newsService;
     private final UserService userService;
     private final StorageService storageService;
@@ -38,7 +38,7 @@ public class NewsController {
         model.addAttribute("title", "News");
         List<News> newsList = newsService.getAllNews();
         model.addAttribute("newsList", newsList);
-        return "/admin/news";
+        return "admin/news";
     }
 
     @GetMapping("/news/create")
@@ -52,7 +52,7 @@ public class NewsController {
         model.addAttribute("departments", departments);
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
-        return "/admin/news/newsCreate";
+        return "admin/news/newsCreate";
     }
 
     @PostMapping("/news/create")
@@ -95,7 +95,7 @@ public class NewsController {
         model.addAttribute("newsDTO", newsDTO);
         List<Image> slides = imageService.fetchImagesByNewsId(id);
         model.addAttribute("slides", slides);
-        return "/admin/news/newsEdit";
+        return "admin/news/newsEdit";
     }
     @PostMapping("/news/edit")
     public String editNews(NewsDTO newsDTO, Long id) throws Exception {
@@ -107,5 +107,15 @@ public class NewsController {
     public String deleteNewsPage(Long id) {
         newsService.deleteNews(id);
         return "redirect:/dashboard/news";
+    }
+
+    @GetMapping("/news/getOne")
+    public String getOneNewsPage(Long id, Model model) {
+        User user =userService.getCurrentUser();
+        model.addAttribute("user", user);
+        model.addAttribute("title", "Yangilik");
+        News news = newsService.getNewsById(id);
+        model.addAttribute("news", news);
+        return "admin/news/oneNews";
     }
 }

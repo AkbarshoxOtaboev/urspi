@@ -98,7 +98,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-end">
-                                <a href="/dashboard/news/create" class="btn btn-outline-primary">Yangi yanglik qo`shish</a>
+                                <a href="/dashboard/news/create" class="btn btn-outline-primary">Yanglik qo`shish</a>
                             </div>
                             <div class="table-responsive mt-2">
                                 <div id="file_export_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -159,6 +159,7 @@
                                                 </button>
                                             </td>
                                             <td>
+                                                <a th:href="@{/dashboard/news/getOne(id=${news.id})}" class="btn btn-outline-primary"> <i class="fas fa-eye"></i></a>
                                                 <a th:href="@{/dashboard/news/edit(id=${news.id})}"
                                                    class="ebtn btn btn-outline-orange"><i class="fas fa-edit"></i></a>
                                                 <a th:href="@{/dashboard/news/delete(id = ${news.id})}"
