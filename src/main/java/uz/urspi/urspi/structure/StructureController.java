@@ -27,7 +27,7 @@ public class StructureController {
         model.addAttribute("structures", structures);
         Structure structure = new Structure();
         model.addAttribute("structure", structure);
-        return "/admin/structure";
+        return "admin/structure";
     }
 
     @PostMapping("/structure/create")

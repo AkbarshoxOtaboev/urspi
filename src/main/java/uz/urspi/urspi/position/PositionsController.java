@@ -30,7 +30,7 @@ public class PositionsController {
         model.addAttribute("newPosition", newPosition);
         List<Positions> positions = positionsService.getAllPositions();
         model.addAttribute("positions", positions);
-        return "/admin/position";
+        return "admin/position";
     }
 
     @PostMapping("/position/create")

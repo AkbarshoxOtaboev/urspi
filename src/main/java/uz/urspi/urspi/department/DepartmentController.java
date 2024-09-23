@@ -26,7 +26,7 @@ public class DepartmentController {
         model.addAttribute("department", department);
         List<Department> departments = departmentService.fetchAllDepartments();
         model.addAttribute("departments", departments);
-        return "/admin/department";
+        return "admin/department";
     }
     @PostMapping("/department/save")
     public String saveDepartment(Department department) {

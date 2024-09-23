@@ -112,6 +112,29 @@ p{
 .search_bar input:focus{
     outline: none;
 }
+/*app section*/
+.app_card{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    transition: 0.8s;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    width: 120px;
+    height: 120px;
+}
+.app_card a{
+    text-decoration: none;
+    color: #0a0965;
+    font-weight: 600;
+}
+.app_card:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/*end app section*/
 
 /*news*/
 ._news{
@@ -201,6 +224,24 @@ p{
 /*stat end*/
 
 /*gallery*/
+/*swiper*/
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 500px;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+}
+/*swiper end*/
 /* Slideshow container */
 .slideshow{
     height: 500px;

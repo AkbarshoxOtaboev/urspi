@@ -30,7 +30,7 @@ public class EventController {
         model.addAttribute("events", events);
         Event event = new Event();
         model.addAttribute("event", event);
-        return "/admin/events";
+        return "admin/events";
     }
 
     @PostMapping("/event/create")
@@ -66,7 +66,7 @@ public class EventController {
         model.addAttribute("eventInfoDTO", eventInfoDTO);
         List<EventInfo> eventInfos = eventInfoService.getEventInfosByEventId(id);
         model.addAttribute("eventInfos", eventInfos);
-        return "/admin/eventInfo";
+        return "admin/eventInfo";
     }
     @PostMapping("/event/eventInfo/create")
     public String createEventInfo(EventInfoDTO eventInfoDTO, Model model, Long id) {

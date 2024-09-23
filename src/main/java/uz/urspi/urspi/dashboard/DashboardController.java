@@ -20,7 +20,8 @@ public class DashboardController {
         User user =userService.getCurrentUser();
         model.addAttribute("user", user);
         model.addAttribute("title", "Dashboard");
-        return "/admin/home";
+        return "admin/home";
+
     }
 
 
@@ -31,7 +32,7 @@ public class DashboardController {
         User user =userService.getCurrentUser();
         model.addAttribute("user", user);
         model.addAttribute("title", "Employee");
-        return "/admin/employee";
+        return "admin/employee";
     }
 
     @GetMapping("/pages")
@@ -39,7 +40,7 @@ public class DashboardController {
         User user =userService.getCurrentUser();
         model.addAttribute("user", user);
         model.addAttribute("title", "Pages");
-        return "/admin/pages";
+        return "admin/pages";
     }
 
 }

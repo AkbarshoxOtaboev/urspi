@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
           rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/front/css/style.css">
     <title>Urganch davlat pedogogika instituti</title>
 </head>
@@ -64,14 +65,53 @@
     </div>
     <!--end carusel-->
 <!--    search bar-->
-    <div class="search_bar">
-        <div class="container">
-            <form class="shadow-lg" role="search">
-                    <input type="text" name="search" id="search" placeholder="Izlash...">
-                    <button class="_btn"><i class="bi bi-search"></i></button>
-            </form>
+<!--    <div class="search_bar">-->
+<!--        <div class="container">-->
+<!--            <form class="shadow-lg" role="search">-->
+<!--                    <input type="text" name="search" id="search" placeholder="Izlash...">-->
+<!--                    <button class="_btn"><i class="bi bi-search"></i></button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+    <!-- app section -->
+    <div class="container">
+        <div class="d-flex mt-3 mb-3 justify-content-between">
+            <div class="app_card">
+                <img src="/front/images/free-icon-telegram-logo-87413.png" alt="telegram_logo" width="50">
+                <a href="#">Rektorga <br> murojat</a>
+            </div>
+            <div class="app_card">
+                <img src="/front/images/free-icon-study-8920696.png" alt="telegram_logo" width="50">
+                <a href="#">Hemis</a>
+            </div>
+            <div class="app_card">
+                <img src="/front/images/free-icon-school-building-15553529.png" alt="telegram_logo" width="50">
+                <a href="#">Akademik <br> litsey</a>
+            </div>
+            <div class="app_card">
+                <img src="/front/images/free-icon-corruption-5411053.png" alt="telegram_logo" width="50">
+                <a href="#">Korrupsiya</a>
+            </div>
+            <div class="app_card">
+                <img src="/front/images/free-icon-news-report-7793364.png" alt="telegram_logo" width="50">
+                <a href="#">Matbuot <br> xizmati</a>
+            </div>
+            <div class="app_card">
+                <img src="/front/images/free-icon-teamwork-8834709.png" alt="telegram_logo" width="50">
+                <a href="#">Kadrlar <br> bo`limi</a>
+            </div>
+            <div class="app_card">
+                <img src="/front/images/free-icon-consulting-service-16930151.png" alt="telegram_logo" width="50">
+                <a href="#">Call <br> Center</a>
+            </div>
+            <div class="app_card">
+                <img src="/front/images/free-icon-video-player-4499597.png" alt="telegram_logo" width="50">
+                <a href="#">Video <br> tranferlar</a>
+            </div>
         </div>
     </div>
+
+    <!-- app section end-->
 <!--    search bar end-->
     <!--    news section-->
     <div class="_news"  >
@@ -402,48 +442,83 @@
         </div>
     </section>
     <!-- Slideshow container -->
+<!--partners-->
+    <div class="container-fluid mt-3 mb-3">
+        <div class="row">
+            <div class="col-sm-12 d-flex justify-content-center">
+                <span class="mt-2" style="color: #0a0965; font-size: 28px; font-weight: bold">&#9644; Hamkor tashkilotlar &#9644;</span>
+            </div>
+        </div>
 
+    </div>
+<!--partners end-->
 <!--    Photo gallery-->
-    <div class="container">
+    <div class="container-fluid" style="background-color: #f1f1f1">
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-center">
                 <span class="mt-2" style="color: #0a0965; font-size: 28px; font-weight: bold">&#9644; Foto galereya &#9644;</span>
             </div>
         </div>
-        <div class="slider-wrapper">
-<!--            <button id="prev-slide" class="slide-button material-symbols-rounded">-->
-<!--                &#11164;-->
-<!--            </button>-->
-            <ul class="image-list">
-                <img class="image-item" src="/front/images/0C0A2059.JPG" alt="img-1" />
-                <img class="image-item" src="/front/images/0C0A2045.JPG" alt="img-1" />
-                <img class="image-item" src="/front/images/0C0A2399.JPG" alt="img-1" />
-                <img class="image-item" src="/front/images/0C0A2052.JPG" alt="img-1" />
-                <img class="image-item" src="/front/images/0C0A2059.JPG" alt="img-1" />
-                <img class="image-item" src="/front/images/0C0A2045.JPG" alt="img-1" />
-                <img class="image-item" src="/front/images/0C0A2399.JPG" alt="img-1" />
-                <img class="image-item" src="/front/images/0C0A2052.JPG" alt="img-1" />
-                <img class="image-item" src="/front/images/0C0A2059.JPG" alt="img-1" />
-                <img class="image-item" src="/front/images/0C0A2045.JPG" alt="img-1" />
-            </ul>
-<!--            <button id="next-slide" class="slide-button material-symbols-rounded">-->
-<!--                &#11166;-->
-<!--            </button>-->
-        </div>
-        <div class="slider-scrollbar">
-            <div class="scrollbar-track">
-                <div class="scrollbar-thumb"></div>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="/front/images/0C0A2052.JPG" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/front/images/0C0A2399.JPG" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/front/images/0C0A2045.JPG" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/front/images/0C0A2059.JPG" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/front/images/0C0A2052.JPG" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/front/images/0C0A2399.JPG" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/front/images/0C0A2045.JPG" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/front/images/0C0A2059.JPG" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/front/images/0C0A2052.JPG" />
+                </div>
             </div>
+            <div class="swiper-pagination"></div>
         </div>
+<!--
     </div>
 <!--    Photo gallery end-->
 </main>
-<div th:insert=" ~{/parts/client/footer::footer}"></div>
+<div th:insert=" ~{parts/client/footer::footer}"></div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/front/js/gallery.js"></script>
 <script src="/front/js/slider.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
+</script>
 </body>
 </html>

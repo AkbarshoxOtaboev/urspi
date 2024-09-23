@@ -1,7 +1,7 @@
 const initSlider = () => {
     const imageList = document.querySelector(".slider-wrapper .image-list");
     const slideButtons = document.querySelectorAll(".slider-wrapper .slide-button");
-    const sliderScrollbar = document.querySelector(".container .slider-scrollbar");
+    const sliderScrollbar = document.querySelector(".container-fluid .slider-scrollbar");
     const scrollbarThumb = sliderScrollbar.querySelector(".scrollbar-thumb");
     const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
 
@@ -45,10 +45,10 @@ const initSlider = () => {
     });
 
     // Show or hide slide buttons based on scroll position
-    const handleSlideButtons = () => {
-        slideButtons[0].style.display = imageList.scrollLeft <= 0 ? "none" : "flex";
-        slideButtons[1].style.display = imageList.scrollLeft >= maxScrollLeft ? "none" : "flex";
-    }
+    // const handleSlideButtons = () => {
+    //     slideButtons[0].style.display = imageList.scrollLeft <= 0 ? "none" : "flex";
+    //     slideButtons[1].style.display = imageList.scrollLeft >= maxScrollLeft ? "none" : "flex";
+    // }
 
     // Update scrollbar thumb position based on image scroll
     const updateScrollThumbPosition = () => {
@@ -60,7 +60,7 @@ const initSlider = () => {
     // Call these two functions when image list scrolls
     imageList.addEventListener("scroll", () => {
         updateScrollThumbPosition();
-        handleSlideButtons();
+        // handleSlideButtons();
     });
 }
 
