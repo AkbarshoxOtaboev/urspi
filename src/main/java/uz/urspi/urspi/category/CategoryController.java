@@ -29,7 +29,7 @@ public class CategoryController {
         model.addAttribute("category", category);
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
-        return "/admin/category";
+        return "admin/category";
     }
 
     @PostMapping("/create")
@@ -59,7 +59,4 @@ public class CategoryController {
         categoryService.updateCategory(category.getId(), category);
         return "redirect:/category";
     }
-
-
-
 }
