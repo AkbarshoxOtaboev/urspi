@@ -26,7 +26,7 @@ public class MenuController {
         model.addAttribute("menu", menu);
         List<Menu> menus = menuService.findAll();
         model.addAttribute("menus", menus);
-        return "/admin/menu";
+        return "admin/menu";
     }
 
     @PostMapping("/menu/create")

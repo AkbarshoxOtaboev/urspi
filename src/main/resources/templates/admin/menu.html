@@ -97,7 +97,27 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-outline-success"> <i class="fas fa-plus"></i> Menyu qo`shish</button>
+                            </div>
+                            <table class="table table-responsive table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Menyu nomi</th>
+                                    <th>Sub menyular</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="menu:${menus}">
+                                    <td th:text="${menu.id}"></td>
+                                    <td th:text="${menu.name}"></td>
+                                </tr>
+                                </tbody>
 
+                            </table>
                         </div>
                     </div>
                 </div>

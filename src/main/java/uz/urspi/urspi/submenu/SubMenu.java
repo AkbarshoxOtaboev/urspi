@@ -1,6 +1,5 @@
-package uz.urspi.urspi.menu;
+package uz.urspi.urspi.submenu;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,29 +8,27 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
 import uz.urspi.urspi.config.TableName;
-import uz.urspi.urspi.submenu.SubMenu;
+import uz.urspi.urspi.menu.Menu;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = TableName.MENUS)
-public class Menu {
+@Data
+@Table(name = TableName.SUBMENUS)
+public class SubMenu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true, length = 50)
-    private String name;
-    private String path;
+
+    private String subMenuName;
+
     private Integer status;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu", cascade = CascadeType.ALL)
-    private List<SubMenu> subMenus;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
     @CreationTimestamp(source = SourceType.DB)
     private Instant createdAt;
