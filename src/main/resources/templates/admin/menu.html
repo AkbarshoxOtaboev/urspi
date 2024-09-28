@@ -97,14 +97,18 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-outline-success"> <i class="fas fa-plus"></i> Menyu qo`shish</button>
+                            <div class="d-flex justify-content-start mb-3">
+                                <button type="button" class="btn btn-outline-purple" data-toggle="modal"
+                                        data-target="#createMenuModal" data-whatever="@mdo"><i class="fas fa-plus"></i>
+                                    Menyu qo`shish
+                                </button>
                             </div>
-                            <table class="table table-responsive table-hover">
+                            <table class="table table-hover ">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Menyu nomi</th>
+                                    <th>Menyu kategoriyasi</th>
                                     <th>Sub menyular</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -114,6 +118,22 @@
                                 <tr th:each="menu:${menus}">
                                     <td th:text="${menu.id}"></td>
                                     <td th:text="${menu.name}"></td>
+                                    <td th:if="${menu.pageType == 1}">Yangliklar va e`lonlar</td>
+                                    <td th:if="${menu.pageType == 2}">Institut</td>
+                                    <td th:if="${menu.pageType == 3}">Talabalar va yangliklar</td>
+                                    <td th:if="${menu.pageType == 4}">Qadrlar va bugalteriya</td>
+                                    <td th:if="${menu.pageType == 5}">Korrupsiya</td>
+                                    <td><a href="#">Sub menyular</a></td>
+                                    <td th:if="${menu.status == 1}">
+                                        <button disabled class="btn btn-success btn-sm">Active</button>
+                                    </td>
+                                    <td th:unless="${menu.status == 1}">
+                                        <button disabled class="btn btn-danger btn-sm">No Active</button>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                        <a href="#" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                    </td>
                                 </tr>
                                 </tbody>
 
@@ -148,6 +168,42 @@
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
 </div>
+<!--create modal-->
+<div class="modal" id="createMenuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+     style="display: none; padding-right: 17px;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Yangi menyu qoshish</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/dashboard/menu/create" th:object="${menu}">
+                    <div class="form-group">
+                        <label for="menu_name" class="control-label">Menyu nomi</label>
+                        <input type="text" class="form-control" id="menu_name" th:field="${menu.name}">
+                    </div>
+                    <div class="form-group">
+                        <label for="page_type">Menyu turi </label>
+                        <select id="page_type" name="pageType" class="form-control" required>
+                            <option th:name="1" th:value="1">Yangliklar va E`lonlar</option>
+                            <option th:name="2" th:value="2">Institut</option>
+                            <option th:name="3" th:value="3">Talabalar va abituriyentlar</option>
+                            <option th:name="4" th:value="4">Qadrlar va bugalteriya</option>
+                            <option th:name="5" th:value="5">Korrupsiya</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Qo`shish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end create modal-->
+
 <!-- ============================================================== -->
 <!-- End Wrapper -->
 <!-- ============================================================== -->

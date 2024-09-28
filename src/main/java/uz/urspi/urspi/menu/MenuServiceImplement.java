@@ -13,6 +13,7 @@ public class MenuServiceImplement implements MenuService {
 
     @Override
     public void create(Menu menu) {
+        menu.setStatus(1);
         menuRepository.save(menu);
     }
 

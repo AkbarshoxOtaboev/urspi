@@ -31,7 +31,7 @@ public class MenuController {
 
     @PostMapping("/menu/create")
     public String createMenu(Model model, Menu menu) {
-        if(!menuService.checkMenuName(menu.getName())) {
+        if(menuService.checkMenuName(menu.getName())) {
             return "redirect:/dashboard/menu?error";
         }else {
             menuService.create(menu);
