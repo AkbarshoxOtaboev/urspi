@@ -56,4 +56,14 @@ public class MenuController {
         menuService.delete(id);
         return "redirect:/dashboard/menu";
     }
+
+    @GetMapping("/menu/subMenu")
+    public String subMenu(Model model, Long menuId) {
+        User user = userService.getCurrentUser();
+        model.addAttribute("user", user);
+        model.addAttribute("title", "Menu");
+        Menu menu = menuService.findById(menuId);
+        model.addAttribute("menu", menu);
+        return "admin/subMenu";
+    }
 }

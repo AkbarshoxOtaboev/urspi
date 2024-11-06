@@ -67,16 +67,18 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-5 align-self-center">
-                    <h4 class="page-title">Menu</h4>
+                    <h4 class="page-title" th:text="${menu.name}"></h4>
                 </div>
                 <div class="col-7 align-self-center">
                     <div class="d-flex align-items-center justify-content-end">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Asosiy</a>
+                                    <a th:href="@{/dashboard/menu}">Menyular</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Menu</li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <a th:href="@{/dashboard/menu}" th:text="${menu.name}"></a>
+                                </li>
                             </ol>
                         </nav>
                     </div>
@@ -97,46 +99,32 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-start mb-3">
-                                <button type="button" class="btn btn-outline-purple" data-toggle="modal"
-                                        data-target="#createMenuModal" data-whatever="@mdo"><i class="fas fa-plus"></i>
-                                    Menyu qo`shish
-                                </button>
+                            <div class="d-flex justify-content-start">
+                                <button class="btn btn-outline-primary"> <i class="fas fa-plus"></i> Qo`shish</button>
                             </div>
-                            <table class="table table-hover ">
+                            <table class="table table-hover table-responsive">
                                 <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Menyu nomi</th>
-                                    <th>Menyu kategoriyasi</th>
-                                    <th>Sub menyular</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Sub menu nomi</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="menu:${menus}">
-                                    <td th:text="${menu.id}"></td>
-                                    <td th:text="${menu.name}"></td>
-                                    <td th:if="${menu.pageType == 1}">Yangliklar va e`lonlar</td>
-                                    <td th:if="${menu.pageType == 2}">Institut</td>
-                                    <td th:if="${menu.pageType == 3}">Talabalar va yangliklar</td>
-                                    <td th:if="${menu.pageType == 4}">Qadrlar va bugalteriya</td>
-                                    <td th:if="${menu.pageType == 5}">Korrupsiya</td>
-                                    <td><a th:href="@{/dashboard/menu/subMenu(menuId = ${menu.id})}">Sub menyular</a></td>
-                                    <td th:if="${menu.status == 1}">
+                                <tr th:each="submenu:${menu.subMenus}">
+                                    <td th:text="${submenu.id}"></td>
+                                    <td th:text="${submenu.subMenuName}"></td>
+                                    <td th:if="${submenu.status == 1}">
                                         <button disabled class="btn btn-success btn-sm">Active</button>
                                     </td>
-                                    <td th:unless="${menu.status == 1}">
+                                    <td th:unless="${submenu.status == 1}">
                                         <button disabled class="btn btn-danger btn-sm">No Active</button>
                                     </td>
-                                    <td>
-                                        <a href="#" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
-                                    </td>
+                                    <td><a th:href="@{/dashboard/menu/submenu/edit(id=${submenu.id})}" class="btn btn-outline-orange"> <i class="fas fa-edit"></i></a></td>
+                                    <td><a th:href="@{/dashboard/menu/submenu/delete(id=${submenu.id})}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a></td>
                                 </tr>
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
@@ -168,6 +156,7 @@
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
 </div>
+
 <!--create modal-->
 <div class="modal" id="createMenuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
      style="display: none; padding-right: 17px;">
@@ -179,20 +168,10 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/dashboard/menu/create" th:object="${menu}">
+                <form method="post" action="/dashboard/menu/submenu/create" th:object="${submenu}">
                     <div class="form-group">
                         <label for="menu_name" class="control-label">Menyu nomi</label>
-                        <input type="text" class="form-control" id="menu_name" th:field="${menu.name}">
-                    </div>
-                    <div class="form-group">
-                        <label for="page_type">Menyu turi </label>
-                        <select id="page_type" name="pageType" class="form-control" required>
-                            <option th:name="1" th:value="1">Yangliklar va E`lonlar</option>
-                            <option th:name="2" th:value="2">Institut</option>
-                            <option th:name="3" th:value="3">Talabalar va abituriyentlar</option>
-                            <option th:name="4" th:value="4">Qadrlar va bugalteriya</option>
-                            <option th:name="5" th:value="5">Korrupsiya</option>
-                        </select>
+                        <input type="text" class="form-control" id="menu_name" th:field="${submenu.name}">
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Qo`shish</button>
@@ -203,7 +182,6 @@
     </div>
 </div>
 <!--end create modal-->
-
 <!-- ============================================================== -->
 <!-- End Wrapper -->
 <!-- ============================================================== -->
