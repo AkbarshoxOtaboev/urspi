@@ -1,6 +1,7 @@
 package uz.urspi.urspi.menu;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class MenuServiceImplement implements MenuService {
     public void edit(Menu menu, Long id) {
         Menu updatedMenu = menuRepository.findById(id).orElse(null);
         updatedMenu.setName(menu.getName());
+        updatedMenu.setPageType(menu.getPageType());
         menuRepository.save(updatedMenu);
     }
 
@@ -32,8 +34,15 @@ public class MenuServiceImplement implements MenuService {
     }
 
     @Override
-    public List<Menu> findAll() {
-        return menuRepository.findAll();
+    public void activeMenu(Long id) {
+        Menu menu = menuRepository.findById(id).orElseThrow();
+        menu.setStatus(1);
+        menuRepository.save(menu);
+    }
+
+    @Override
+    public List<Menu> findByStatus(Integer status) {
+        return menuRepository.findByStatus(status, Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @Override

@@ -12,7 +12,6 @@ import uz.urspi.urspi.config.TableName;
 import uz.urspi.urspi.submenu.SubMenu;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

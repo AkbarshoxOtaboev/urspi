@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en"  xmlns:th="https://www.thymeleaf.org">
+<html dir="ltr" lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -94,7 +94,7 @@
             <!-- Start Page Content -->
             <!-- ============================================================== -->
             <div class="row">
-                <div class="col-12">
+                <div class="col-7">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-start mb-3">
@@ -103,7 +103,7 @@
                                     Menyu qo`shish
                                 </button>
                             </div>
-                            <table class="table table-hover ">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -115,15 +115,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="menu:${menus}">
-                                    <td th:text="${menu.id}"></td>
+                                <tr th:each="menu:${activeMenus}">
+                                    <td th:text="${menuStat.index +1}"></td>
                                     <td th:text="${menu.name}"></td>
                                     <td th:if="${menu.pageType == 1}">Yangliklar va e`lonlar</td>
                                     <td th:if="${menu.pageType == 2}">Institut</td>
                                     <td th:if="${menu.pageType == 3}">Talabalar va yangliklar</td>
                                     <td th:if="${menu.pageType == 4}">Qadrlar va bugalteriya</td>
                                     <td th:if="${menu.pageType == 5}">Korrupsiya</td>
-                                    <td><a th:href="@{/dashboard/menu/subMenu(menuId = ${menu.id})}">Sub menyular</a></td>
+                                    <td><a th:href="@{/dashboard/menu/subMenu(menuId = ${menu.id})}">Sub menyular</a>
+                                    </td>
                                     <td th:if="${menu.status == 1}">
                                         <button disabled class="btn btn-success btn-sm">Active</button>
                                     </td>
@@ -131,8 +132,47 @@
                                         <button disabled class="btn btn-danger btn-sm">No Active</button>
                                     </td>
                                     <td>
-                                        <a href="#" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                        <a th:href="@{/dashboard/menu/getOne(id=${menu.id})}"
+                                           class="btn btn-outline-warning ebtn"><i class="fas fa-edit"></i></a>
+                                        <a th:href="@{/dashboard/menu/delete(id=${menu.id})}"
+                                           class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-start mb-3">
+                                <h4>No Active menyular</h4>
+                            </div>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nomi</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="menu:${noActiveMenus}">
+
+                                    <td th:text="${menuStat.index + 1}"></td>
+                                    <td th:text="${menu.name}"></td>
+                                    <td th:if="${menu.status == 1}">
+                                        <button disabled class="btn btn-success btn-sm">Active</button>
+                                    </td>
+                                    <td th:unless="${menu.status == 1}">
+                                        <button disabled class="btn btn-danger btn-sm">No Active</button>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/dashboard/menu/active(id=${menu.id})}"
+                                           class="btn btn-outline-cyan">Aktivlashtirish </a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -203,6 +243,42 @@
     </div>
 </div>
 <!--end create modal-->
+<!--edit modal-->
+<div class="modal" id="editMenuModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel1"
+     style="display: none; padding-right: 17px;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="editModalLabel1">Yangi menyu qoshish</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/dashboard/menu/edit" th:object="${menu}">
+                    <input type="hidden" name="id" id="menuId" th:field="${menu.id}">
+                    <div class="form-group">
+                        <label for="menu_edit_name" class="control-label">Menyu nomi</label>
+                        <input type="text" class="form-control" id="menu_edit_name" th:field="${menu.name}">
+                    </div>
+                    <div class="form-group">
+                        <label for="page_type">Menyu turi </label>
+                        <select id="page_edit_type" name="pageType" class="form-control" required>
+                            <option th:name="1" th:value="1">Yangliklar va E`lonlar</option>
+                            <option th:name="2" th:value="2">Institut</option>
+                            <option th:name="3" th:value="3">Talabalar va abituriyentlar</option>
+                            <option th:name="4" th:value="4">Qadrlar va bugalteriya</option>
+                            <option th:name="5" th:value="5">Korrupsiya</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">O`zgartirish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end create modal-->
 
 <!-- ============================================================== -->
 <!-- End Wrapper -->
@@ -231,6 +307,7 @@
 <script src="/admin/js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <script src="/admin/js/custom.min.js"></script>
+<script src="/admin/js/editMenu.js"></script>
 </body>
 
 </html>

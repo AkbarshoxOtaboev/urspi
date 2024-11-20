@@ -12,6 +12,7 @@ import java.util.List;
 public class SubMenuServiceImplement  implements SubMenuService{
     private final SubMenuRepository subMenuRepository;
     private final MenuService menuService;
+
     @Override
     public void create(SubMenu subMenu, Long menuId) {
         Menu menu = menuService.findById(menuId);
@@ -32,7 +33,9 @@ public class SubMenuServiceImplement  implements SubMenuService{
 
     @Override
     public void update(Long id, SubMenu subMenu) {
-
+        SubMenu editSubMenu = subMenuRepository.findById(id).orElseThrow();
+        editSubMenu.setSubMenuName(subMenu.getSubMenuName());
+        subMenuRepository.saveAndFlush(editSubMenu);
     }
 
     @Override
