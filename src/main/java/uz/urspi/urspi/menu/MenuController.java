@@ -83,14 +83,33 @@ public class MenuController {
         model.addAttribute("title", "Sub menu");
         Menu menu = menuService.findById(menuId);
         model.addAttribute("menu", menu);
+        List<SubMenu> subMenus = subMenuService.findAllByMenuId(menuId);
+        model.addAttribute("subMenus", subMenus);
         SubMenu subMenu = new SubMenu();
         model.addAttribute("subMenu", subMenu);
         return "admin/subMenu";
+    }
+    @GetMapping("/menu/subMenu/getOne")
+    @ResponseBody
+    public SubMenu getOneSubMenu(Long id) {
+        return subMenuService.findById(id);
     }
 
     @PostMapping("/menu/subMenu/create")
     public String createSubMenu(Model model, SubMenu subMenu, Long menuId) {
         subMenuService.create(subMenu, menuId);
+        return "redirect:/dashboard/menu/subMenu?menuId=" + menuId;
+    }
+
+    @PostMapping("/menu/subMenu/update")
+    public String updateSubMenu(Model model, SubMenu subMenu, Long menuId) {
+        subMenuService.update(subMenu.getId(), subMenu);
+        return "redirect:/dashboard/menu/subMenu?menuId=" + menuId;
+    }
+
+    @GetMapping("/menu/subMenu/delete")
+    public String deleteSubMenu(Long id, Long menuId) {
+        subMenuService.delete(id);
         return "redirect:/dashboard/menu/subMenu?menuId=" + menuId;
     }
 }

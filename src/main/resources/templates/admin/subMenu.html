@@ -115,7 +115,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="submenu:${menu.subMenus}">
+                                <tr th:each="submenu:${subMenus}">
                                     <td th:text="${submenu.id}"></td>
                                     <td th:text="${submenu.subMenuName}"></td>
                                     <td th:if="${submenu.status == 1}">
@@ -125,8 +125,8 @@
                                         <button disabled class="btn btn-danger btn-sm">No Active</button>
                                     </td>
                                     <td>
-                                        <a th:href="@{/dashboard/menu/submenu/edit(id=${submenu.id})}" class="btn btn-outline-orange"> <i class="fas fa-edit"></i></a>
-                                        <a th:href="@{/dashboard/menu/submenu/delete(id=${submenu.id})}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                        <a th:href="@{/dashboard/menu/subMenu/getOne(id=${submenu.id})}" class="ebtn btn btn-outline-orange"> <i class="fas fa-edit"></i></a>
+                                        <a th:href="@{/dashboard/menu/subMenu/delete(id=${submenu.id}, menuId=${menu.id})}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -187,7 +187,7 @@
     </div>
 </div>
 <!--end create modal-->
-<!--create modal-->
+<!--edit modal-->
 <div class="modal" id="editMenuModal" tabindex="-1" role="dialog" aria-labelledby="exampleEditModalLabel1"
      style="display: none; padding-right: 17px;">
     <div class="modal-dialog" role="document">
@@ -212,7 +212,7 @@
         </div>
     </div>
 </div>
-<!--end create modal-->
+<!--end edit modal-->
 <!-- ============================================================== -->
 <!-- End Wrapper -->
 <!-- ============================================================== -->
@@ -240,6 +240,7 @@
 <script src="/admin/js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <script src="/admin/js/custom.min.js"></script>
+<script src="/admin/js/editSubMenu.js"></script>
 </body>
 
 </html>

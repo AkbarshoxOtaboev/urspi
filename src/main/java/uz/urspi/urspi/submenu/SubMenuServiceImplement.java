@@ -1,6 +1,7 @@
 package uz.urspi.urspi.submenu;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import uz.urspi.urspi.menu.Menu;
 import uz.urspi.urspi.menu.MenuService;
@@ -28,7 +29,7 @@ public class SubMenuServiceImplement  implements SubMenuService{
 
     @Override
     public List<SubMenu> findAllByMenuId(Long menuId) {
-        return subMenuRepository.findByMenuId(menuId);
+        return subMenuRepository.findByMenuId(menuId, Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @Override
