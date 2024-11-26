@@ -42,15 +42,12 @@
     </div>
     <div class="navbar d-flex align-items-center">
         <div class="container">
-            <a class="nav_link" href="#"><i class="bi bi-house-fill"></i></a>
-            <a class="nav_link" href="#">Yangliklar</a>
-            <a class="nav_link" href="#">Institut</a>
-            <a class="nav_link" href="#">Faoliyat</a>
-            <a class="nav_link" href="#">Abituriyent</a>
-            <a class="nav_link" href="#">Talabalar</a>
-            <a class="nav_link" href="#">Xorijiy talabalar</a>
-            <a class="nav_link" href="#">Ta`lim resurslari</a>
-            <a class="nav_link" href="#">Talabalar turar joyi bilan ta`minlash</a>
+            <div>
+                <a class="nav_link" href="#"><i class="bi bi-house-fill"></i></a>
+            </div>
+            <div th:each="menu:${menus}">
+                <a class="nav_link" href="#" th:text="${menu.name}"></a>
+            </div>
         </div>
     </div>
 </header>

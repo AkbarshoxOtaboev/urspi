@@ -116,7 +116,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="submenu:${subMenus}">
-                                    <td th:text="${submenu.id}"></td>
+                                   <td th:text="${submenu.id}"></td>
                                     <td th:text="${submenu.subMenuName}"></td>
                                     <td th:if="${submenu.status == 1}">
                                         <button disabled class="btn btn-success btn-sm">Active</button>
