@@ -19,11 +19,18 @@ import java.util.List;
 public class  WebController {
     private final CategoryService categoryService;
     private final MenuService menuService;
+
     @GetMapping("/")
     public  String getIndex(Model model){
         List<Menu> menus = menuService.findByStatus(1);
         model.addAttribute("menus", menus);
         return "index";
+    }
+    @GetMapping("/news")
+    public String getNews(Model model){
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
+        return "news";
     }
 
     @GetMapping("/statute")
