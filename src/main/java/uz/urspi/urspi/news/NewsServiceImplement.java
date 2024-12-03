@@ -1,6 +1,8 @@
 package uz.urspi.urspi.news;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import uz.urspi.urspi.image.Image;
@@ -86,5 +88,10 @@ public class NewsServiceImplement implements NewsService {
     @Override
     public News getNewsById(Long newsId) {
         return newsRepository.findById(newsId).orElseThrow();
+    }
+
+    @Override
+    public Page<News> fetchPageableNews(Integer status, Pageable pageable) {
+        return newsRepository.findAllByStatus(status, pageable);
     }
 }
