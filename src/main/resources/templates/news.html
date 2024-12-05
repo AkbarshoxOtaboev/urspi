@@ -10,7 +10,7 @@
             <div class="col-sm-9">
                 <h3>Songgi yangliklar</h3>
                 <hr>
-                <div th:each="news:${newsList}" class="card mb-3 shadow mb-2 bg-body-tertiary rounded border-none">
+                <div th:each="news:${newsPage.toList()}" class="card mb-3 shadow mb-2 bg-body-tertiary rounded border-none">
                     <div class="row g-0">
                         <div class="col-md-4 img_content">
                             <img th:src="@{'/dashboard/news/files/'+ ${news.image}}" class="img-fluid rounded-start" alt="123">

@@ -1,11 +1,16 @@
 package uz.urspi.urspi;
 
 
+import jakarta.annotation.security.PermitAll;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import uz.urspi.urspi.category.Category;
 import uz.urspi.urspi.category.CategoryService;
 import uz.urspi.urspi.menu.Menu;
@@ -30,12 +35,20 @@ public class  WebController {
         return "index";
     }
     @GetMapping("/news")
-    public String getNews(Model model){
+    public String getNews(Model model, @RequestParam Integer status, Pageable pageable){
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
         List<News> newsList = newsService.getAllNews();
+        Page<News> newsPage = newsService.fetchPageableNews(status, pageable);
         model.addAttribute("newsList", newsList);
+        model.addAttribute("newsPage", newsPage);
         return "news";
+    }
+
+    @GetMapping("/news/pageable")
+    @ResponseBody
+    public List<News> pageableNews(@RequestParam Integer status, Pageable pageable) {
+        return newsService.fetchPageableNews(status,pageable).toList();
     }
 
 

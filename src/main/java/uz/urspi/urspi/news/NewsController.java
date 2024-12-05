@@ -45,12 +45,6 @@ public class  NewsController {
         model.addAttribute("newsList", newsList);
         return "admin/news";
     }
-    @PermitAll
-    @GetMapping("/news/pageable")
-    @ResponseBody
-    public Page<News> pageableNews(@RequestParam Integer status, Pageable pageable) {
-        return newsService.fetchPageableNews(status,pageable);
-    }
 
     @GetMapping("/news/create")
     public String createNewsPage(Model model) {
