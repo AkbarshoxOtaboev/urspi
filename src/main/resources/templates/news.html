@@ -27,9 +27,28 @@
 
                             </div>
                         </div>
+
                     </div>
                 </div>
-
+                <div class="d-flex justify-content-end">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item" th:each="page:${newsPage.getPageable().getPageSize()}">
+                                <a class="page-link" th:href="@{/news}">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
             <div class="col-sm-3">
                 <h3>Yanglik turlari</h3>

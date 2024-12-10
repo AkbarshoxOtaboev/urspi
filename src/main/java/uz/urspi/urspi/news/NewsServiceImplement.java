@@ -91,7 +91,7 @@ public class NewsServiceImplement implements NewsService {
     }
 
     @Override
-    public Page<News> fetchPageableNews(Integer status, Pageable pageable) {
-        return newsRepository.findAllByStatus(status, pageable);
+    public Page<News> fetchPageableNews(Pageable pageable) {
+        return newsRepository.findAllByStatus(1, pageable);
     }
 }

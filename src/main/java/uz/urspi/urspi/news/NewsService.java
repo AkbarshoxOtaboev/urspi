@@ -16,5 +16,5 @@ public interface NewsService {
 
     News getNewsById(Long newsId);
 
-    Page<News> fetchPageableNews (Integer status, Pageable pageable);
+    Page<News> fetchPageableNews (Pageable pageable);
 }

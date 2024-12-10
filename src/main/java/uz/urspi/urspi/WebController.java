@@ -1,7 +1,5 @@
 package uz.urspi.urspi;
 
-
-import jakarta.annotation.security.PermitAll;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,11 +33,12 @@ public class  WebController {
         return "index";
     }
     @GetMapping("/news")
-    public String getNews(Model model, @RequestParam Integer status, Pageable pageable){
+    public String getNews(Model model,
+                          Pageable pageable){
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
         List<News> newsList = newsService.getAllNews();
-        Page<News> newsPage = newsService.fetchPageableNews(status, pageable);
+        Page<News> newsPage = newsService.fetchPageableNews(pageable);
         model.addAttribute("newsList", newsList);
         model.addAttribute("newsPage", newsPage);
         return "news";
@@ -47,8 +46,8 @@ public class  WebController {
 
     @GetMapping("/news/pageable")
     @ResponseBody
-    public List<News> pageableNews(@RequestParam Integer status, Pageable pageable) {
-        return newsService.fetchPageableNews(status,pageable).toList();
+    public Page<News> pageableNews(Pageable pageable) {
+        return newsService.fetchPageableNews(pageable);
     }
 
 
