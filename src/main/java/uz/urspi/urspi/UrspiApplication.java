@@ -22,7 +22,7 @@ public class UrspiApplication {
     }
 
     @Bean
-    CommandLineRunner runner(UserService userService){
+    CommandLineRunner runner(UserService userService, StorageService storageService) {
         if(!userService.checkUser("admin")){
             return args -> {
                 User admin = User.builder()
@@ -33,18 +33,10 @@ public class UrspiApplication {
                         .status(1)
                         .build();
                 userService.createUser(admin);
+                storageService.init();
             };
         }else {
             return args -> {};
         }
-
-    };
-
-    @Bean
-    CommandLineRunner init(StorageService storageService){
-        return args -> {
-          storageService.init();
-        };
     }
-
 }
