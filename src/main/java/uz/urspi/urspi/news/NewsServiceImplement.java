@@ -2,9 +2,12 @@ package uz.urspi.urspi.news;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import uz.urspi.urspi.category.Category;
+import uz.urspi.urspi.category.CategoryService;
 import uz.urspi.urspi.image.Image;
 import uz.urspi.urspi.image.ImageService;
 import uz.urspi.urspi.storage.StorageService;
@@ -20,6 +23,7 @@ public class NewsServiceImplement implements NewsService {
     private final StorageService storageService;
     private final ImageService imageService;
     private final UserService userService;
+    private final CategoryService categoryService;
 
 
     @Override
@@ -91,7 +95,15 @@ public class NewsServiceImplement implements NewsService {
     }
 
     @Override
-    public Page<News> fetchPageableNews(Pageable pageable) {
-        return newsRepository.findAllByStatus(1, pageable);
+    public Page<News> fetchPageableNews(Long categoryId, Integer page, Integer size) {
+        if(categoryId == null) {
+            Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
+            return newsRepository.findAll(pageable);
+        }else {
+            Category category = categoryService.getCategory(categoryId);
+            Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
+            return newsRepository.findAllByCategory(category, pageable);
+        }
+
     }
 }

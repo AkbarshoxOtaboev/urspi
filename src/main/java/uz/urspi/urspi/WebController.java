@@ -21,38 +21,36 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 @RequiredArgsConstructor
-public class  WebController {
+public class WebController {
     private final CategoryService categoryService;
     private final MenuService menuService;
     private final NewsService newsService;
 
     @GetMapping("/")
-    public  String getIndex(Model model){
+    public String getIndex(Model model) {
         List<Menu> menus = menuService.findByStatus(1);
         model.addAttribute("menus", menus);
         return "index";
     }
+
     @GetMapping("/news")
-    public String getNews(Model model,
-                          Pageable pageable){
+    public String getNews(
+            @RequestParam(defaultValue = "") Long categoryId,
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "4") Integer size,
+            Model model) {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
-        List<News> newsList = newsService.getAllNews();
-        Page<News> newsPage = newsService.fetchPageableNews(pageable);
-        model.addAttribute("newsList", newsList);
-        model.addAttribute("newsPage", newsPage);
+        Page<News> newsPage = newsService.fetchPageableNews(categoryId,page, size);
+        model.addAttribute("categoryId", categoryId);
+        model.addAttribute("newsList", newsPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", newsPage.getTotalPages());
         return "news";
     }
 
-    @GetMapping("/news/pageable")
-    @ResponseBody
-    public Page<News> pageableNews(Pageable pageable) {
-        return newsService.fetchPageableNews(pageable);
-    }
-
-
     @GetMapping("/statute")
-    public  String getStatute(Model model){
+    public String getStatute(Model model) {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
         return "client/statute";
