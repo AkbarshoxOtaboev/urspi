@@ -106,4 +106,10 @@ public class NewsServiceImplement implements NewsService {
         }
 
     }
+
+    @Override
+    public Page<News> fetchLast8News() {
+        Pageable pageable = PageRequest.of(0, 9, Sort.by(Sort.Direction.DESC, "id"));
+        return newsRepository.findAll(pageable);
+    }
 }

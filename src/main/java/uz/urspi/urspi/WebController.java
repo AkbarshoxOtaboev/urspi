@@ -28,8 +28,8 @@ public class WebController {
 
     @GetMapping("/")
     public String getIndex(Model model) {
-        List<Menu> menus = menuService.findByStatus(1);
-        model.addAttribute("menus", menus);
+        Page<News> last8News = newsService.fetchLast8News();
+        model.addAttribute("newsList", last8News.getContent());
         return "index";
     }
 
@@ -47,6 +47,15 @@ public class WebController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", newsPage.getTotalPages());
         return "news";
+    }
+
+    @GetMapping("/news/getOne")
+    public String getNews(@RequestParam Long newsId, Model model) {
+        News news = newsService.getNewsById(newsId);
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("news", news);
+        model.addAttribute("categories", categories);
+        return "oneNews";
     }
 
     @GetMapping("/statute")

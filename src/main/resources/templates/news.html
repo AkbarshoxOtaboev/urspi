@@ -21,7 +21,7 @@
 
                             <div class="card-body-info">
                                 <span th:text="${news.createdAt.toString().substring(0,10 )}"><i class="bi bi-clock"></i> </span>
-                                <a href="#" class="btn">Batafsil</a>
+                                <a th:href="@{/news/getOne(newsId=${news.id})}" class="btn">Batafsil</a>
                             </div>
 
 

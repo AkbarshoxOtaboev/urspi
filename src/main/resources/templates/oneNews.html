@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<div th:insert="~{parts/client/head::head}"></div>
+<link rel="stylesheet" href="/front/css/news.css">
+<body>
+<div th:insert="~{parts/client/header::header}"></div>
+<main>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-sm-9">
+                <h3 th:text="${news.title}"></h3>
+                <hr>
+                <div th:utext="${news.content}"></div>
+                <img th:src="@{'/dashboard/news/files/'+ ${news.image}}" class="img-fluid rounded-start p-1" alt="123" >
+                <img th:src="@{'/dashboard/news/files/'+ ${news.imageList.get(0).path}}" class="img-fluid rounded-start p-1" alt="123">
+                <img th:src="@{'/dashboard/news/files/'+ ${news.imageList.get(1).path}}" class="img-fluid rounded-start p-1" alt="123">
+                <img th:src="@{'/dashboard/news/files/'+ ${news.imageList.get(2).path}}" class="img-fluid rounded-start p-1" alt="123">
+
+            </div>
+            <div class="col-sm-3">
+                <h3>Yanglik turlari</h3>
+                <hr>
+                <div class="list">
+                    <ul>
+                        <li th:each="category:${categories}">
+                            <a th:href="@{/news(categoryId=${category.id})}" th:text="${category.name}"></a>
+                            <hr>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+<div th:insert=" ~{parts/client/footer::footer}"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+</body>
+</html>

@@ -17,4 +17,6 @@ public interface NewsService {
     News getNewsById(Long newsId);
 
     Page<News> fetchPageableNews (Long categoryId, Integer page, Integer size);
+
+    Page<News> fetchLast8News();
 }
